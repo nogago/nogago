@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<atlas outputFormat="TaredAtlas" name="Munich" version="1">
+    <Layer name="Test">
+        <Map name="Test 06" zoom="6" mapSource="Mapnik" minTileCoordinate="8704/5632" maxTileCoordinate="8959/5887"/>
+        <Map name="Test 07" zoom="7" mapSource="Mapnik" minTileCoordinate="17408/11264" maxTileCoordinate="17663/11519"/>
+        <Map name="Test 08" zoom="8" mapSource="Mapnik" minTileCoordinate="34816/22528" maxTileCoordinate="35071/22783"/>
+        <Map name="Test 09" zoom="9" mapSource="Mapnik" minTileCoordinate="69632/45312" maxTileCoordinate="69887/45567"/>
+        <Map name="Test 10" zoom="10" mapSource="Mapnik" minTileCoordinate="139264/90880" maxTileCoordinate="139519/91135"/>
+        <Map name="Test 11" zoom="11" mapSource="Mapnik" minTileCoordinate="278784/181760" maxTileCoordinate="279039/182015"/>
+        <Map name="Test 12" zoom="12" mapSource="Mapnik" minTileCoordinate="557824/363776" maxTileCoordinate="558079/364031"/>
+        <Map name="Test 13" zoom="13" mapSource="Mapnik" minTileCoordinate="1115648/727552" maxTileCoordinate="1116159/728063"/>
+        <Map name="Test 14" zoom="14" mapSource="Mapnik" minTileCoordinate="2231552/1455360" maxTileCoordinate="2232063/1455871"/>
+        <Map name="Test 15" zoom="15" mapSource="Mapnik" minTileCoordinate="4463360/2910720" maxTileCoordinate="4464127/2911487"/>
+        <Map name="Test 16" zoom="16" mapSource="Mapnik" minTileCoordinate="8926976/5821440" maxTileCoordinate="8928255/5822975"/>
+    </Layer>
+</atlas>

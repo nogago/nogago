@@ -1,0 +1,8 @@
+bin/
+gen/
+local.properties
+raw/
+obj/
+cpd.xml
+libs/
+jni/Local.mk

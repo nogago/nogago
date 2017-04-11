@@ -1,0 +1,52 @@
+﻿<renderingStyle name="mtb" depends="default" defaultColor="#F5FFFF" version="1">
+
+	<line>
+		<group>
+			<filter tag="route" value="mtb" maxzoom="20" color="#009DFF"/>
+			<groupFilter cap="ROUND">
+				<filter minzoom="10" maxzoom="10" strokeWidth="4"/>
+				<filter minzoom="11" maxzoom="11" strokeWidth="4"/>
+				<filter minzoom="12" maxzoom="12" strokeWidth="4"/>
+				<filter minzoom="13" maxzoom="13" strokeWidth="12"/>
+				<filter minzoom="14" maxzoom="14" strokeWidth="12"/>
+				<filter minzoom="15" maxzoom="15" strokeWidth="13"/>
+				<filter minzoom="16" maxzoom="16" strokeWidth="14"/>
+				<filter minzoom="17" maxzoom="17" strokeWidth="25"/>
+				<filter minzoom="18" maxzoom="18" strokeWidth="30"/>
+				<filter minzoom="19" maxzoom="19" strokeWidth="35"/>
+				<filter minzoom="20" maxzoom="20" strokeWidth="35"/>
+				<filter minzoom="21" maxzoom="21" strokeWidth="40"/>
+				<filter minzoom="22" maxzoom="22" strokeWidth="45"/>
+			</groupFilter>
+		</group>
+		
+		<group>
+			<filter tag="contour_ext" value="elevation_minor" maxzoom="20" color="#676459"/>
+			<groupFilter cap="ROUND">
+				<filter minzoom="15" maxzoom="15" strokeWidth="1"/>
+				<filter minzoom="16" maxzoom="16" strokeWidth="1"/>
+				<filter minzoom="17" maxzoom="17" strokeWidth="2"/>
+				<filter minzoom="18" maxzoom="18" strokeWidth="2"/>
+				<filter minzoom="19" maxzoom="19" strokeWidth="2"/>
+				<filter minzoom="20" maxzoom="20" strokeWidth="3"/>
+
+			</groupFilter>
+		</group>
+		
+		<group>
+			<filter tag="contour_ext" value="elevation_major" maxzoom="20" color="#676459"/>
+			<groupFilter cap="ROUND">
+			   <filter minzoom="12" maxzoom="12" strokeWidth="2"/>
+				<filter minzoom="13" maxzoom="13" strokeWidth="2"/>
+				<filter minzoom="14" maxzoom="14" strokeWidth="2"/>
+				<filter minzoom="15" maxzoom="15" strokeWidth="2"/>
+				<filter minzoom="16" maxzoom="16" strokeWidth="2"/>
+				<filter minzoom="17" maxzoom="17" strokeWidth="3"/>
+				<filter minzoom="18" maxzoom="18" strokeWidth="4"/>
+				<filter minzoom="19" maxzoom="19" strokeWidth="4"/>
+				<filter minzoom="20" maxzoom="20" strokeWidth="5"/>
+
+			</groupFilter>
+		</group>
+	</line>
+</renderingStyle>

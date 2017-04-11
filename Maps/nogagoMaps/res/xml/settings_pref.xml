@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory 
+        android:key="nogago_dep_cat"
+        android:title="@string/options_general_label" >
+        
+        
+        <Preference android:key="nogago_register" android:title="@string/nogago_register" android:summary="@string/nogago_register_desc"/>
+        
+        <EditTextPreference
+            android:dialogTitle="@string/options_information_username_label"
+            android:key="user_name"
+            android:title="@string/options_information_username_label" />
+        <EditTextPreference
+            android:dialogTitle="@string/options_information_password_label"
+            android:key="user_password"
+            android:password="true"
+            android:title="@string/options_information_password_label" />
+        
+  </PreferenceCategory>
+    <PreferenceCategory
+        android:key="profile_dep_cat" 
+        android:title="@string/profile_settings" >
+<!-- Profile-chooser
+        <ListPreference
+            android:key="application_mode"
+            android:summary="@string/settings_preset_descr"
+            android:title="@string/settings_preset" >
+        </ListPreference>
+ -->
+
+        <PreferenceScreen
+            android:key="map_settings"
+            android:summary="@string/rendering_settings_descr"
+            android:title="@string/rendering_settings" >
+            <PreferenceCategory android:title="@string/pref_raster_map" >
+
+                <!--
+			<CheckBoxPreference android:summary="@string/map_vector_data_descr" android:title="@string/map_vector_data"
+				android:key="map_vector_data"></CheckBoxPreference>
+			<ListPreference android:title="@string/map_tile_source" android:summary="@string/map_tile_source_descr" android:key="map_tile_sources"></ListPreference>
+                -->
+                <CheckBoxPreference
+                    android:key="use_internet_to_download_tiles"
+                    android:summary="@string/use_internet_to_download_tile"
+                    android:title="@string/use_internet" >
+                </CheckBoxPreference>
+                <!--
+            try without, Issue 823:
+			<ListPreference android:title="@string/max_level_download_tile" android:summary="@string/max_level_download_tile_descr"
+				android:key="max_level_download_tile"></ListPreference>
+                -->
+                
+                <Preference android:title="@string/map_data_management_title" android:summary="@string/map_data_management_summary">
+				  <intent android:action="com.nogago.android.maps.activities.MapManagerActivity"></intent>
+				</Preference>
+				
+            </PreferenceCategory>
+            <!--
+		<PreferenceCategory android:title="@string/pref_overlay">
+			<ListPreference android:title="@string/map_overlay" android:summary="@string/map_overlay_descr" android:key="map_overlay"></ListPreference>
+			<ListPreference android:title="@string/map_underlay" android:summary="@string/map_underlay_descr" android:key="map_underlay"></ListPreference>
+			<com.nogago.android.maps.views.SeekBarPreference android:key="overlay_transparency" android:defaultValue="0" android:max="255" 
+				android:dialogMessage="@string/modify_transparency" android:title="@string/overlay_transparency" android:summary="@string/overlay_transparency_descr"/>
+			<com.nogago.android.maps.views.SeekBarPreference android:key="map_transparency" android:defaultValue="0" android:max="255" 
+				android:dialogMessage="@string/modify_transparency" android:title="@string/map_transparency" android:summary="@string/map_transparency_descr"/>
+		</PreferenceCategory>
+            -->
+            <PreferenceCategory android:title="@string/pref_vector_map" >
+
+                <!--
+			<ListPreference android:title="@string/level_to_switch_vector_raster" android:summary="@string/level_to_switch_vector_raster_descr"
+				android:key="level_to_switch_vector_raster"></ListPreference>
+                -->
+                <ListPreference
+                    android:key="renderer"
+                    android:summary="@string/renderers_descr"
+                    android:title="@string/renderers" >
+                </ListPreference>
+                <ListPreference
+                    android:key="map_text_size"
+                    android:summary="@string/map_text_size_descr"
+                    android:title="@string/map_text_size" />
+            </PreferenceCategory>
+            <!--
+		<PreferenceCategory android:title="@string/pref_vector_rendering" android:key="custom_vector_rendering">
+		</PreferenceCategory>
+            -->
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:key="appearance_settings"
+            android:summary="@string/appearance_settings_descr"
+            android:title="@string/appearance_settings" >
+            <ListPreference
+                android:key="daynight_mode"
+                android:summary="@string/daynight_descr"
+                android:title="@string/daynight" >
+            </ListPreference>
+            <ListPreference
+                android:key="rotate_map"
+                android:summary="@string/rotate_map_to_bearing_descr"
+                android:title="@string/rotate_map_to_bearing" >
+            </ListPreference>
+
+            <CheckBoxPreference
+                android:key="auto_zoom_map"
+                android:summary="@string/auto_zoom_map_descr"
+                android:title="@string/auto_zoom_map" >
+            </CheckBoxPreference>
+
+            <ListPreference
+                android:key="position_on_map"
+                android:summary="@string/position_on_map_descr"
+                android:title="@string/position_on_map" >
+            </ListPreference>
+
+            <CheckBoxPreference
+                android:key="show_view_angle"
+                android:summary="@string/show_view_angle_descr"
+                android:title="@string/show_view_angle" >
+            </CheckBoxPreference>
+            <CheckBoxPreference
+                android:key="use_english_names"
+                android:summary="@string/use_english_names_descr"
+                android:title="@string/use_english_names" >
+            </CheckBoxPreference>
+            <CheckBoxPreference
+                android:key="show_altitude_info"
+                android:summary="@string/show_altitude_info_descr"
+                android:title="@string/show_altitude_info" />
+            <!-- <CheckBoxPreference android:key="transparent_map_theme" android:title="@string/use_transparent_map_theme" android:summary="@string/use_transparent_map_theme_descr"/> -->
+            <CheckBoxPreference
+                android:key="fluorescent_overlays"
+                android:summary="@string/use_fluorescent_overlays_descr"
+                android:title="@string/use_fluorescent_overlays" />
+            <CheckBoxPreference
+                android:key="show_ruler"
+                android:summary="@string/show_ruler_level_descr"
+                android:title="@string/show_ruler_level" />
+        </PreferenceScreen>
+
+        <!--
+	<PreferenceScreen android:key = "monitor_settings" android:title="@string/monitor_preferences" android:summary="@string/monitor_preferences_descr">
+		<PreferenceCategory android:title="@string/save_track_to_gpx">
+			<CheckBoxPreference android:summary="@string/save_track_to_gpx_descrp" android:title="@string/save_track_to_gpx"
+				android:key="save_track_to_gpx"></CheckBoxPreference>
+			<ListPreference android:summary="@string/save_track_interval_descr" android:title="@string/save_track_interval"
+				android:key="save_track_interval"></ListPreference>
+			<Preference android:summary="@string/save_current_track_descr" android:title="@string/save_current_track" android:key="save_current_track"></Preference>
+		</PreferenceCategory>
+	
+		<PreferenceCategory android:title="@string/live_monitoring">
+			<CheckBoxPreference android:summary="@string/live_monitoring_descr" android:title="@string/live_monitoring"
+				android:key="live_monitoring"></CheckBoxPreference>
+			<EditTextPreference android:summary="@string/live_monitoring_url_descr" android:title="@string/live_monitoring_url"
+				android:key="live_monitoring_url"/>
+			<ListPreference android:summary="@string/live_monitoring_interval_descr" android:title="@string/live_monitoring_interval"
+				android:key="live_monitoring_interval"></ListPreference>
+		</PreferenceCategory>
+	</PreferenceScreen>
+        -->
+
+        <PreferenceScreen
+            android:key="routing_settings"
+            android:summary="@string/routing_settings_descr"
+            android:title="@string/routing_settings" >
+
+            <!-- <ListPreference android:title="@string/router_service" android:key="router_service" android:summary="@string/router_service_descr"></ListPreference> -->
+            <CheckBoxPreference
+                android:key="fast_route_mode"
+                android:summary="@string/fast_route_mode_descr"
+                android:title="@string/fast_route_mode" >
+            </CheckBoxPreference>
+
+            <ListPreference
+                android:key="voice_provider"
+                android:summary="@string/voice_provider_descr"
+                android:title="@string/voice_provider" >
+            </ListPreference>
+            <ListPreference
+                android:key="auto_follow_route"
+                android:summary="@string/choose_auto_follow_route_descr"
+                android:title="@string/choose_auto_follow_route" >
+            </ListPreference>
+            <!--
+        try without AUTO_FOLLOW_ROUTE_NAV (see forum discussion 'Simplify our navigation preference menu')
+		<CheckBoxPreference android:summary="@string/auto_follow_route_navigation_descr" android:title="@string/auto_follow_route_navigation"
+			android:key="auto_follow_route_navigation"></CheckBoxPreference>
+		
+		<CheckBoxPreference android:summary="@string/use_osmand_routing_service_descr" android:title="@string/use_osmand_routing_service"
+			android:key="use_osmand_routing_service"></CheckBoxPreference>
+            -->
+        </PreferenceScreen>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/global_settings" >
+
+<!--  	<Preference android:title="@string/index_settings" android:key="local_indexes" android:summary="@string/index_settings_descr"></Preference> -->
+
+        <PreferenceScreen
+            android:key="general_settings"
+            android:summary="@string/general_settings_descr"
+            android:title="@string/general_settings" >
+            <PreferenceCategory android:title="@string/global_app_settings" >
+                <ListPreference
+                    android:key="map_screen_orientation"
+                    android:summary="@string/map_screen_orientation_descr"
+                    android:title="@string/map_screen_orientation" >
+                </ListPreference>
+                <!-- <CheckBoxPreference android:key="use_high_res_maps" android:title="@string/use_high_res_maps" android:summary="@string/use_high_res_maps_descr"></CheckBoxPreference> -->
+                <ListPreference
+                    android:key="preferred_locale"
+                    android:summary="@string/preferred_locale_descr"
+                    android:title="@string/preferred_locale" >
+                </ListPreference>
+                <ListPreference
+                    android:key="default_metric_system"
+                    android:summary="@string/unit_of_length_descr"
+                    android:title="@string/unit_of_length" >
+                </ListPreference>
+                <ListPreference
+                    android:key="audio_stream"
+                    android:summary="@string/choose_audio_stream_descr"
+                    android:title="@string/choose_audio_stream" >
+                </ListPreference>
+<!-- 
+                <CheckBoxPreference
+                    android:key="use_trackball_for_movements"
+                    android:summary="@string/use_trackball_descr"
+                    android:title="@string/use_trackball" >
+                </CheckBoxPreference>
+       -->
+                <EditTextPreference
+                    android:enabled="true"
+                    android:key="external_storage_dir"
+                    android:title="@string/application_dir" >
+                </EditTextPreference>
+                
+          
+            </PreferenceCategory>
+            <!--
+		<PreferenceCategory android:title="@string/osm_settings">
+		
+			<CheckBoxPreference android:key="show_osm_bugs" android:title="@string/show_osm_bugs"
+			android:summary="@string/show_osm_bugs_descr"></CheckBoxPreference>
+	
+			<EditTextPreference android:title="@string/user_name" android:summary="@string/user_name_descr" android:key="user_name"></EditTextPreference>
+			<EditTextPreference android:title="@string/user_password" android:password="true" android:summary="@string/user_password_descr"
+				android:key="user_password"></EditTextPreference>
+			<CheckBoxPreference android:summary="@string/offline_poi_edition_descr" android:title="@string/offline_poi_edition"
+				android:key="offline_poi_edition"></CheckBoxPreference>
+			<Preference android:title="@string/local_openstreetmap_settings" android:key="local_openstreetmap_points" android:summary="@string/local_openstreetmap_settings_descr"></Preference>
+		</PreferenceCategory>
+      
+            <PreferenceCategory android:title="@string/osmand_service" >
+
+           
+		    	<CheckBoxPreference android:key="native_rendering" android:title="Native rendering" android:summary="Vector maps may display faster. May not work well on some devices."></CheckBoxPreference>
+		
+			<CheckBoxPreference android:summary="@string/trace_rendering_descr" android:title="@string/trace_rendering"
+				android:key="debug_rendering"></CheckBoxPreference>
+                -->
+                <!-- 
+                <CheckBoxPreference
+                    android:key="animate_routing"
+                    android:summary="Simulate route progression manually"
+                    android:title="Animate routing" >
+                </CheckBoxPreference>
+
+                <Preference
+                    android:key="test_voice_commands"
+                    android:summary="Play commands of currently selected voice"
+                    android:title="Test voice prompts" >
+                </Preference>
+                 -->
+                <!-- 
+            </PreferenceCategory> -->
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:summary="@string/osmand_service_descr"
+            android:title="@string/osmand_service" >
+            <CheckBoxPreference
+                android:key="service_off_enabled"
+                android:summary="@string/background_router_service_descr"
+                android:title="@string/background_router_service" >
+            </CheckBoxPreference>
+
+            <ListPreference
+                android:key="service_off_provider"
+                android:summary="@string/background_service_provider_descr"
+                android:title="@string/background_service_provider" >
+            </ListPreference>
+            <ListPreference
+                android:key="service_off_interval"
+                android:summary="@string/background_service_int_descr"
+                android:title="@string/background_service_int" >
+            </ListPreference>
+            <ListPreference
+                android:key="service_off_wait_interval"
+                android:summary="@string/background_service_wait_int_descr"
+                android:title="@string/background_service_wait_int" >
+            </ListPreference>
+        </PreferenceScreen>
+        <!-- 
+        <PreferenceScreen
+            android:key="accessibility_preferences"
+            android:summary="@string/accessibility_preferences_descr"
+            android:title="@string/accessibility_preferences" >
+            <ListPreference
+                android:key="direction_style"
+                android:summary="@string/settings_direction_style_descr"
+                android:title="@string/settings_direction_style" >
+            </ListPreference>
+  <CheckBoxPreference android:key="zoom_by_trackball" android:title="@string/zoom_by_trackball" android:summary="@string/zoom_by_trackball_descr"></CheckBoxPreference>
+            <CheckBoxPreference
+                android:key="scroll_map_by_gestures"
+                android:summary="@string/scroll_map_by_gestures_descr"
+                android:title="@string/scroll_map_by_gestures" >
+            </CheckBoxPreference>
+ 	<CheckBoxPreference android:key="use_short_object_names" android:title="@string/use_short_object_names" android:summary="@string/use_short_object_names_descr"></CheckBoxPreference>
+        </PreferenceScreen>
+         -->
+        <!--
+	<Preference android:title="@string/support_new_features" android:key="bidforfix">
+	</Preference>	
+        -->
+    </PreferenceCategory>
+
+</PreferenceScreen>

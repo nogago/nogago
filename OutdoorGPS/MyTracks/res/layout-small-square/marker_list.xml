@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2010 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/actionBarSeperator" />
+
+    <ListView
+        android:id="@+id/marker_list"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0" />
+
+    <TextView
+        android:id="@+id/marker_list_empty"
+        style="@style/ListEmptyTextView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="@string/marker_list_empty_message" >
+    </TextView>
+
+    <View
+        android:id="@+id/action_bar_seperator"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/marker_list"
+        android:background="@color/actionBarSeperator" />
+
+    <LinearLayout
+        android:id="@+id/track_controller_container"
+        android:layout_width="fill_parent"
+        android:layout_height="101px"
+      android:paddingTop="10px"
+      android:paddingBottom="10px"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/action_bar_seperator"
+        android:background="@color/actionBarBG"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/listBtnBarBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:layout_weight="1"
+            android:background="@color/actionBarBG"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_previous" />
+
+        <ImageButton
+            android:id="@+id/listBtnBarSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@color/actionBarBG"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_search" />
+
+        <ImageButton
+            android:id="@+id/listBtnBarMarker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@color/actionBarBG"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_marker" />
+    </LinearLayout>
+
+</LinearLayout>

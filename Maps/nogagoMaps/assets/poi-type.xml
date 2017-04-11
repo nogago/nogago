@@ -1,0 +1,252 @@
+<poi-type>
+	<type>highway-services</type>
+	<!-- <type>highway-stop</type> -->
+	<!-- <type>highway-traffic_signals</type> -->
+	<!-- <type>highway-crossing</type> -->
+	<!-- <type>highway-incline</type> -->
+	<!-- <type>highway-incline_steep</type> -->
+	<!-- <type>highway-ford</type> -->
+	<type>highway-bus_stop</type>
+	<!-- <type>highway-turning_circle</type> -->
+	<type>highway-emergency_access_point</type>
+	<!-- <type>highway-speed_camera</type> -->
+	<type>barrier-bollard</type>
+	<type>barrier-cycle_barrier</type>
+	<!-- <type>barrier-cattle_grid</type> -->
+	<!-- <type>barrier-toll_booth</type> -->
+	<!-- <type>barrier-entrance</type> -->
+	<!-- <type>barrier-gate</type> -->
+	<type>barrier-stile</type>
+	<!-- <type>barrier-sally_port</type> -->
+	<!-- <type>waterway-lock_gate</type> -->
+	<!-- <type>waterway-turning_point</type> -->
+	<!-- <type>waterway-boatyard</type> -->
+	<!-- <type>waterway-weir</type> -->
+	<type>railway-station</type>
+	<type>railway-halt</type>
+	<type>railway-tram_stop</type>
+	<!-- <type>railway-crossing</type> -->
+	<!-- <type>railway-level_crossing</type> -->
+	<type>railway-subway_entrance</type>
+	<type>aeroway-aerodrome</type>
+	<!-- <type>aeroway-terminal</type> -->
+	<!-- <type>aeroway-helipad</type> -->
+	<!-- <type>aeroway-gate</type> -->
+	<!-- <type>aeroway-windsock</type> -->
+	<type>aerialway-station</type>
+	<!-- <type>power-tower</type> -->
+	<!-- <type>power-station</type> -->
+	<!-- <type>power-sub_station</type> -->
+	<!-- <type>power-generator</type> -->
+	<!-- <type>man_made-beacon</type> -->
+	<!-- <type>man_made-crane</type> -->
+	<!-- <type>man_made-gasometer</type> -->
+	<type>man_made-lighthouse</type>
+	<!-- <type>man_made-reservoir_covered</type> -->
+	<!-- <type>man_made-surveillance</type> -->
+	<!-- <type>man_made-survey_point</type> -->
+	<type>man_made-tower</type>
+	<!-- <type>man_made-wastewater_plant</type> -->
+	<type>man_made-watermill</type>
+	<!-- <type>man_made-water_tower</type> -->
+	<!-- <type>man_made-water_works</type> -->
+	<type>man_made-windmill</type>
+	<!-- <type>man_made-works</type> -->
+	<type>leisure-sports_centre</type>
+	<type>leisure-golf_course</type>
+	<type>leisure-stadium</type>
+	<!-- <type>leisure-track</type> -->
+	<type>leisure-pitch</type>
+	<type>leisure-water_park</type>
+	<type>leisure-marina</type>
+	<type>leisure-slipway</type>
+	<type>leisure-fishing</type>
+	<type>leisure-nature_reserve</type>
+	<type>leisure-park</type>
+	<type>leisure-playground</type>
+	<type>leisure-garden</type>
+	<!-- <type>leisure-common</type> -->
+	<type>leisure-ice_rink</type>
+	<type>leisure-miniature_golf</type>
+	<type>amenity-restaurant</type>
+	<type>amenity-pub</type>
+	<type>amenity-food_court</type>
+	<type>amenity-fast_food</type>
+	<type>amenity-drinking_water</type>
+	<type>amenity-bbq</type>
+	<type>amenity-biergarten</type>
+	<type>amenity-cafe</type>
+	<!-- <type>amenity-kindergarten</type> -->
+	<type>amenity-school</type>
+	<type>amenity-college</type>
+	<type>amenity-library</type>
+	<type>amenity-university</type>
+	<!-- <type>amenity-ferry_terminal</type> -->
+	<type>amenity-bicycle_parking</type>
+	<type>amenity-bicycle_rental</type>
+	<type>amenity-bus_station</type>
+	<!-- <type>amenity-car_rental</type> -->
+	<!-- <type>amenity-car_sharing</type> -->
+	<type>amenity-fuel</type>
+	<!-- <type>amenity-grit_bin</type> -->
+	<type>amenity-parking</type>
+	<type>amenity-taxi</type>
+	<type>amenity-atm</type>
+	<type>amenity-bank</type>
+	<type>amenity-bureau_de_change</type>
+	<type>amenity-pharmacy</type>
+	<type>amenity-hospital</type>
+	<!-- <type>amenity-baby_hatch</type> -->
+	<type>amenity-dentist</type>
+	<type>amenity-doctors</type>
+	<!-- <type>amenity-veterinary</type> -->
+	<type>amenity-arts_centre</type>
+	<type>amenity-cinema</type>
+	<type>amenity-fountain</type>
+	<!-- <type>amenity-nightclub</type> -->
+	<!-- <type>amenity-stripclub</type> -->
+	<!-- <type>amenity-studio</type> -->
+	<type>amenity-theatre</type>
+	<type>amenity-bench</type>
+	<!-- <type>amenity-brothel</type> -->
+	<type>amenity-courthouse</type>
+	<!-- <type>amenity-crematorium</type> -->
+	<type>amenity-embassy</type>
+	<type>amenity-emergency_phone</type>
+	<type>amenity-fire_station</type>
+	<type>amenity-grave_yard</type>
+	<type>amenity-hunting_stand</type>
+	<type>amenity-marketplace</type>
+	<type>amenity-place_of_worship</type>
+	<type>amenity-police</type>
+	<type>amenity-post_box</type>
+	<type>amenity-post_office</type>
+	<!-- <type>amenity-prison</type> -->
+	<type>amenity-public_building</type>
+	<!-- <type>amenity-recycling</type> -->
+	<type>amenity-shelter</type>
+	<type>amenity-telephone</type>
+	<type>amenity-toilets</type>
+	<type>amenity-townhall</type>
+	<!-- <type>amenity-vending_machine</type> -->
+	<type>amenity-waste_basket</type>
+	<type>amenity-waste_disposal</type>
+	<!-- <type>shop-alcohol</type>  -->
+	<type>shop-bakery</type>
+	<type>shop-beverages</type>
+	<type>shop-bicycle</type>
+	<!-- <type>shop-books</type> -->
+	<type>shop-butcher</type>
+	<!-- <type>shop-car</type> -->
+	<!-- <type>shop-car_repair</type> -->
+	<type>shop-chemist</type>
+	<type>shop-clothes</type>
+	<!-- <type>shop-computer</type> -->
+	<type>shop-confectionery</type>
+	<type>shop-convenience</type>
+	<type>shop-department_store</type>
+	<!-- <type>shop-dry_cleaning</type> -->
+	<!-- <type>shop-doityourself</type> -->
+	<!-- <type>shop-electronics</type> -->
+	<!-- <type>shop-farm</type> --> 
+	<!-- <type>shop-florist</type> -->
+	<!-- <type>shop-funeral_directors</type> -->
+	<!-- <type>shop-furniture</type> -->
+	<!-- <type>shop-garden_centre</type> -->
+	<type>shop-gift</type>
+	<type>shop-greengrocer</type>
+	<!-- <type>shop-hairdresser</type> -->
+	<!-- <type>shop-hardware</type> -->
+	<!-- <type>shop-hifi</type> -->
+	<type>shop-kiosk</type>
+	<!-- <type>shop-laundry</type> -->
+	<type>shop-mall</type>
+	<!-- <type>shop-massage</type> -->
+	<!-- <type>shop-motorcycle</type> -->
+	<type>shop-newsagent</type>
+	<!-- <type>shop-optician</type> -->
+	<type>shop-organic</type>
+	<type>shop-outdoor</type>
+	<type>shop-sports</type>
+	<!-- <type>shop-stationery</type> -->
+	<type>shop-supermarket</type>
+	<!-- <type>shop-shoes</type> --> 
+	<!-- <type>shop-toys</type> -->
+	<type>shop-travel_agency</type>
+	<!-- <type>shop-video</type> -->
+	<type>tourism-alpine_hut</type>
+	<type>tourism-attraction</type>
+	<type>tourism-artwork</type>
+	<type>tourism-camp_site</type>
+	<type>tourism-caravan_site</type>
+	<type>tourism-chalet</type>
+	<type>tourism-guest_house</type>
+	<type>tourism-hostel</type>
+	<type>tourism-hotel</type>
+	<type>tourism-information</type>
+	<type>tourism-motel</type>
+	<type>tourism-museum</type>
+	<type>tourism-picnic_site</type>
+	<type>tourism-theme_park</type>
+	<type>tourism-viewpoint</type>
+	<type>tourism-zoo</type>
+	<type>historic-archaeological_site</type>
+	<type>historic-battlefield</type>
+	<type>historic-castle</type>
+	<type>historic-memorial</type>
+	<type>historic-monument</type>
+	<type>historic-ruins</type>
+	<type>military-airfield</type>
+	<type>military-bunker</type>
+	<!-- <type>military-barracks</type> -->
+	<!-- <type>military-danger_area</type> -->
+	<!-- <type>military-range</type> -->
+	<!-- <type>military-naval_base</type> -->
+	<type>natural-peak</type>
+	<!-- <type>sport-9pin</type> -->
+	<!-- <type>sport-10pin</type> -->
+	<type>sport-archery</type>
+	<type>sport-athletics</type>
+	<type>sport-australian_football</type>
+	<type>sport-baseball</type>
+	<type>sport-basketball</type>
+	<type>sport-beachvolleyball</type>
+	<type>sport-boules</type>
+	<type>sport-bowls</type>
+	<type>sport-canoe</type>
+	<type>sport-chess</type>
+	<type>sport-climbing</type>
+	<type>sport-cricket</type>
+	<type>sport-cricket_nets</type>
+	<type>sport-croquet</type>
+	<type>sport-cycling</type>
+	<type>sport-diving</type>
+	<type>sport-dog_racing</type>
+	<type>sport-equestrian</type>
+	<type>sport-football</type>
+	<type>sport-golf</type>
+	<type>sport-gymnastics</type>
+	<type>sport-hockey</type>
+	<type>sport-horse_racing</type>
+	<type>sport-korfball</type>
+	<type>sport-motor</type>
+	<type>sport-multi</type>
+	<!-- <type>sport-orienteering</type> -->
+	<type>sport-paddle_tennis</type>
+	<type>sport-paragliding</type>
+	<type>sport-pelota</type>
+	<type>sport-racquet</type>
+	<type>sport-rowing</type>
+	<type>sport-rugby</type>
+	<type>sport-shooting</type>
+	<type>sport-skating</type>
+	<type>sport-skateboard</type>
+	<type>sport-skiing</type>
+	<type>sport-soccer</type>
+	<type>sport-swimming</type>
+	<type>sport-table_tennis</type>
+	<type>sport-team_handball</type>
+	<type>sport-tennis</type>
+	<type>sport-toboggan</type>
+	<type>sport-volleyball</type>
+</poi-type>

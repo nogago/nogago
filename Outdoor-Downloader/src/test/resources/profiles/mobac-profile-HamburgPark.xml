@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<atlas outputFormat="TaredAtlas" name="AtlasHamburgPark" version="1">
+    <Layer name="LayerHamburgPark">
+        <Map name="Map Test 13" zoom="13" mapSource="Google Maps" minTileCoordinate="1106688/677120" maxTileCoordinate="1107199/677631"/>
+        <Map name="Map Test 14" zoom="14" mapSource="Google Maps" minTileCoordinate="2213632/1354496" maxTileCoordinate="2214143/1355007"/>
+        <Map name="Map Test 15" zoom="15" mapSource="Google Maps" minTileCoordinate="4427264/2708992" maxTileCoordinate="4428287/2709759"/>
+    </Layer>
+</atlas>

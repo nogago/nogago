@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <LinearLayout
+                android:id="@+id/Headliner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/HelpButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="0.03"
+                    android:clickable="true"
+                    android:contentDescription="@string/help"
+                    android:focusable="true"
+                    android:scaleType="center"
+                    android:src="@drawable/help_icon" />
+
+                <TextView
+                    android:id="@+id/AppName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/app_name"
+                    android:textColor="#FFFFFF"
+                    android:textSize="32sp" />
+
+                <ImageView
+                    android:id="@+id/CloseButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center|center_vertical"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="0.03"
+                    android:clickable="true"
+                    android:contentDescription="@string/close"
+                    android:focusable="true"
+                    android:scaleType="center"
+                    android:src="@drawable/headliner_close" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="40dp" >
+
+                <LinearLayout
+                    android:id="@+id/MapButton"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_leftr"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+								android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:scaleType="center"
+                        android:src="@drawable/button_icon_map" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:gravity="center"  >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|top"
+                            android:text="@string/map_Button"
+                            android:textColor="#000000"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/SearchButton"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_rightr"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+								android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:scaleType="center"
+                        android:src="@drawable/button_icon_navigation" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:gravity="center"   >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|top"
+                            android:text="@string/navigation_Button"
+                            android:textColor="#000000"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_weight="1" >
+
+                <LinearLayout
+                    android:id="@+id/FavoritesButton"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_leftr"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+								android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:scaleType="center"
+                        android:src="@drawable/button_icon_favorites" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:gravity="center"  >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/favorites_Button"
+                            android:textColor="#000000"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/SettingsButton"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_rightr"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginBottom="3dp"
+                        android:scaleType="center"
+                        android:src="@drawable/button_icon_settings" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/settings_Button"
+                            android:textColor="#000000"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp" 
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:id="@+id/MapManagerButton"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_leftr"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+ 								android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:scaleType="center"
+                        android:src="@drawable/button_icon_mapmanager" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:gravity="center"  >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|top"
+                            android:text="@string/mapManager_Button"
+                            android:textColor="#000000"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ToTracksButton"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_rightr"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+ 								android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:scaleType="center"
+                        android:src="@drawable/button_icon_totracks" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:gravity="center"  >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|top"
+                            android:text="@string/toTracks_Button"
+                            android:textColor="#000000"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
+        
+        <LinearLayout
+            android:id="@+id/MapManager"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom|center"
+            android:layout_weight="3"
+            android:gravity="bottom|center"
+            android:orientation="horizontal" >
+ <!--
+            <ImageView
+                android:id="@+id/MapManager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/button_icon_map_manager" />
+-->                
+        </LinearLayout>
+        
+    </LinearLayout>
+
+</FrameLayout>

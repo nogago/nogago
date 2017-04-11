@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="com/google/android/apps/mytracks/MapOverlay.java|com/google/android/apps/mytracks/fragments/ChooseUploadServiceDialogFragment.java|com/google/android/apps/mytracks/fragments/MapFragment.java|com/google/android/apps/mytracks/maps/DynamicSpeedTrackPathPainter.java|com/google/android/apps/mytracks/maps/SingleColorTrackPathPainter.java|com/google/android/apps/mytracks/maps/TrackPathPainter.java|com/google/android/apps/mytracks/maps/TrackPathPainterFactory.java|com/nogago/android/tracks/UploadResultActivity.java|com/google/android/apps/mytracks/util/Api11Adapter.java|com/google/android/apps/mytracks/util/Api14Adapter.java" kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>

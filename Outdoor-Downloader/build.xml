@@ -1,0 +1,282 @@
+<project default="all" name="Compile and build java classes plus jar archives">
+
+	<property file="src/main/resources/mobac/mobac.properties" />
+
+	<property name="rev.prop.file" value="src/main/resources/mobac/mobac-rev.properties" />
+	<property name="jar.name" value="Mobile_Atlas_Creator.jar" />
+	<property name="zip.name" value="Mobile Atlas Creator ${mobac.version}.zip" />
+	<property name="zip_src.name" value="Mobile Atlas Creator ${mobac.version} src.zip" />
+	<property name="main.class" value="mobac.StartMOBAC" />
+
+	<tstamp>
+		<format property="build.date" pattern="yyyy-MM-dd HH:mm:ss" />
+	</tstamp>
+
+	<property name="je-version" value="3.3.93" />
+
+	<!-- Java target version -->
+	<property name="java-target" value="1.6" />
+
+	<path id="maincp">
+		<fileset dir="lib" includes="log*.jar" />
+		<fileset dir="lib" includes="jai*.jar" />
+		<fileset dir="lib" includes="bsh-2.0b4.jar" />
+		<fileset dir="lib" includes="Tidy.jar" />
+		<fileset dir="lib" includes="javapng-2.0.jar" />
+		<fileset dir="lib" includes="itextpdf-5.1.0.jar" />
+		<fileset dir="lib" includes="commons-codec-1.4.jar" />
+		<fileset dir="lib" includes="commons-io-2.0.jar" />
+		<fileset dir="lib" includes="je-${je-version}.jar" />
+	</path>
+
+	<target name="all" depends="clean_build,svnversion,build,build_mapsources,sign_mapsources,create_jar,shrink,create_release,create_release_src" />
+
+	<target name="update_mapsources" depends="build_mapsources,sign_mapsources" />
+
+	<target name="clean_workspace" description="Deletes the work directories ozi, atlases, atlasestared">
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="atlases" includes="**/*" />
+			<fileset dir="build" includes="**/*" />
+			<fileset dir="tilestore" includes="**/*" />
+		</delete>
+	</target>
+
+	<target name="clean_build">
+		<delete includeEmptyDirs="true" failonerror="false">
+			<fileset dir="build" includes="**/*" />
+		</delete>
+	</target>
+
+	<target name="delete_build" description="Deleted the entire build folder">
+		<delete failonerror="yes" dir="build" />
+	</target>
+
+	<target name="build">
+		<mkdir dir="build/mobac" />
+		<!-- Compile the starter class for Java 1.4 (shows an verbose -->
+		<!-- error if the JRE requirements are not met -->
+		<javac srcdir="src/main/java" destdir="build/mobac" target="1.4" source="1.4" debug="true" includeantruntime="false" encoding="UTF-8">
+			<classpath refid="maincp" />
+			<include name="mobac/StartMOBAC.java" />
+		</javac>
+		<!-- Compile the other classes for Java 1.6 -->
+		<javac srcdir="src/main/java" destdir="build/mobac" target="${java-target}" source="${java-target}" debug="true" includeantruntime="false" encoding="UTF-8">
+			<classpath refid="maincp" />
+			<exclude name="mobac/StartMOBAC.java" />
+			<exclude name="mobac/mapsources/mappacks/**" />
+			<include name="mobac/**" />
+		</javac>
+		<copy todir="build/mobac" overwrite="true">
+			<fileset dir="src/main/resources" excludes="**/mapsources.properties" />
+		</copy>
+	</target>
+
+	<target name="build_mapsources" depends="clean_build,build,svnversion" description="Build all map packs and generate the new mappacks-md5.txt">
+		<property name="mappack.srcbasedir" value="src/main/java/mobac/mapsources/mappacks" />
+		<property file="keys/keystore.properties" />
+		<taskdef name="for" classname="net.sf.antcontrib.logic.ForTask">
+			<classpath>
+				<pathelement location="lib/ant-contrib-for.jar" />
+			</classpath>
+		</taskdef>
+		<delete dir="mapsources" includes="mp-*.jar" />
+		<dirset id="mappacks" dir="${mappack.srcbasedir}/" includes="*" />
+		<pathconvert pathsep=";" property="mappacklist" refid="mappacks">
+			<mapper type="flatten" />
+		</pathconvert>
+		<mkdir dir="mapsources" />
+		<echo file="mapsources/mappacks-md5.txt" append="false" message="" />
+		<for list="${mappacklist}" param="mappack" delimiter=";">
+			<sequential>
+				<echo message="@{mappack}" />
+				<mkdir dir="build/mp-@{mappack}" />
+				<uptodate property="@{mappack}.newer" targetfile="mapsources/mp-@{mappack}.jar">
+					<srcfiles dir="src/main/java/mobac/mapsources/mappacks/@{mappack}" />
+				</uptodate>
+				<echo message="No changes in map pack detected: @{mappack}" />
+				<javac srcdir="src/main/java" destdir="build/mp-@{mappack}" defaultexcludes="true" debug="true" target="${java-target}" source="${java-target}" includeantruntime="false" encoding="UTF-8">
+					<include name="mobac/mapsources/mappacks/@{mappack}/**.java" />
+					<classpath>
+						<path refid="maincp" />
+						<path path="build/mobac" />
+					</classpath>
+				</javac>
+				<delete file="mapsources/mp-@{mappack}.jar" failonerror="false" />
+				<fileset dir="build/mp-@{mappack}" defaultexcludes="true" id="fileset-@{mappack}">
+					<include name="mobac/mapsources/mappacks/@{mappack}/**.class" />
+				</fileset>
+
+				<jar destfile="mapsources/mp-@{mappack}.jar">
+					<manifest>
+						<attribute name="MapPackVersion" value="${mobac.mappackversion}" />
+						<attribute name="MapPackName" value="@{mappack}" />
+						<attribute name="MapPackBuild-Date" value="${build.date}" />
+						<attribute name="MapPackRevision" value="${mobac.revision.new}" />
+					</manifest>
+					<fileset refid="fileset-@{mappack}" />
+					<zipfileset dir="${mappack.srcbasedir}/@{mappack}/" includes="mapsources.list" fullpath="META-INF/services/mobac.program.interfaces.MapSource" />
+				</jar>
+				<checksum algorithm="MD5" totalproperty="MD5-@{mappack}">
+					<fileset refid="fileset-@{mappack}" />
+				</checksum>
+				<echo file="mapsources/mappacks-md5.txt" append="true" message="${MD5-@{mappack}} mp-@{mappack}.jar&#13;&#10;" />
+			</sequential>
+		</for>
+	</target>
+
+	<target name="check_keystore" description="Checks if the key store for signing the map packs is present">
+		<available file="keys/keystore.jks" property="keystore.present" />
+	</target>
+
+	<!-- This task is only executed if a java key store is present in the keys directory -->
+	<target name="sign_mapsources" depends="build_mapsources,check_keystore" if="keystore.present">
+		<!-- The required key stores are not available in SVN and releases! -->
+		<echo message="Signing map packs using password: ${keystore.password}" />
+		<for list="${mappacklist}" param="mappack" delimiter=";">
+			<sequential>
+				<signjar keystore="keys/keystore.jks" storepass="${keystore.password}" alias="MapPack" jar="mapsources/mp-@{mappack}.jar" verbose="false" />
+			</sequential>
+		</for>
+	</target>
+
+	<target name="create_jar">
+		<delete file="${jar.name}" />
+		<jar destfile="${jar.name}" filesetmanifest="mergewithoutmain">
+			<manifest>
+				<attribute name="Main-Class" value="${main.class}" />
+				<attribute name="Class-Path" value="./ sqlitejdbc-v056.jar jai_core.jar jai_codec.jar lib/jai_core.jar lib/jai_codec.jar sqlitejdbc-*.jar jai_*.jar lib/jai_*.jar" />
+			</manifest>
+			<zipfileset src="lib/log4j-1.2.15.jar" includes="org/apache/log4j/**" />
+			<zipfileset src="lib/je-${je-version}.jar" />
+			<zipfileset src="lib/bsh-2.0b4.jar" includes="**/*.class" />
+			<zipfileset src="lib/commons-codec-1.4.jar" includes="**/*.class" />
+			<zipfileset src="lib/commons-io-2.0.jar" includes="**/*.class" />
+			<zipfileset src="lib/javapng-2.0.jar" includes="**/*.class" />
+			<zipfileset src="lib/Tidy.jar" includes="org/w3c/tidy/**" />
+			<zipfileset src="lib/itextpdf-5.1.0.jar" />
+			<fileset dir="build/mobac">
+				<exclude name="**/unittest/**" />
+				<exclude name="mobac/mapsources/mapapcks/**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="shrink" depends="create_jar" description="Removes unused classes from compiled jar">
+		<taskdef resource="proguard/ant/task.properties" classpath="lib/proguard.jar" />
+		<proguard>
+			-libraryjars "${java.home}/lib/rt.jar"
+			-injars     "${jar.name}"
+			-outjars    build/temp.jar
+			-keepattributes *Annotation*
+			-keep class ${main.class} { public static void main(java.lang.String[]); }
+			-keep class mobac.program.* { public *; }
+			-keep class mobac.program.interfaces.* { public *; }
+			-keep class mobac.program.model.package-info
+			-keep class mobac.program.model.* { public *; }
+			-keep class mobac.program.jaxb.* { public *; }
+			-keep class mobac.program.interfaces.* { public *; }
+			-keep class mobac.program.download.UserAgent { public *; }
+			-keep class mobac.program.tilestore.berkeleydb.* { *; }
+			-keep class mobac.program.tilestore.TileStoreEntry { public *; }
+			-keep class mobac.program.atlascreators.AtlasCreator  { public *; }
+			-keep class mobac.utilities.beanshell.* { public *; }
+			-keep class mobac.utilities.tar.TarIndex { public *; }
+			-keep class mobac.utilities.tar.TarIndexedArchive { public *; }
+			-keep class mobac.data.gpx.gpx11.* { public *; }
+			-keep class mobac.mapsources.MapSourceTools { public *; }
+			-keep class mobac.mapsources.MapSourceUrlUpdater { public *; }
+			-keep class mobac.mapsources.custom.* { *; }
+			-keep class org.apache.log4j.Layout { public *; }
+			-keep class org.apache.log4j.Level { public *; }
+			-keep class org.apache.log4j.Category { public *; }
+			-keep class org.apache.log4j.Priority { public *; }
+			-keep class org.apache.log4j.spi.LoggingEvent { public *; }
+			-keep class org.apache.log4j.spi.ThrowableInformation { public *; }
+			-keep class org.apache.log4j.spi.LocationInfo { public *; }
+			-keep class org.apache.log4j.PatternLayout { public *; }
+			-keep class org.apache.log4j.Appender { public *; }
+			-keep class org.apache.log4j.FileAppender { public *; }
+			-keep class com.sixlegs.png.PngImage { public *; }
+			-keep class bsh.This { public *; }
+			-keep class bsh.XThis { public *; }
+			-keep class com.sleepycat.persist.PrimaryIndex { public *; }
+			-keepclassmembers enum * {
+			    public static **[] values();
+			    public static ** valueOf(java.lang.String);
+			}
+			-keepclassmembers class * implements java.io.Serializable {
+			    static final long serialVersionUID;
+			    private void writeObject(java.io.ObjectOutputStream);
+			    private void readObject(java.io.ObjectInputStream);
+			    java.lang.Object writeReplace();
+			    java.lang.Object readResolve();
+			}
+			-keepclassmembers class * implements com.sleepycat.persist.evolve.Conversion {
+				boolean equals(java.lang.Object);
+			}
+			-dontwarn
+			-dontoptimize 
+			-dontobfuscate
+		</proguard>
+		<move file="build/temp.jar" tofile="${jar.name}" overwrite="true" />
+	</target>
+
+	<target name="svnversion" description="Updates the revision information in src/mobac/mobac.properties" depends="svnversion_svn">
+	</target>
+
+	<target name="svnversion_svn">
+		<delete file="${rev.prop.file}" />
+		<exec executable="svnversion" outputproperty="mobac.revision.new" searchpath="true" failifexecutionfails="false" />
+		<property name="mobac.revision.new" value="exported" />
+		<condition property="mobac.revision.exported">
+			<equals arg1="${mobac.revision.new}" arg2="exported" />
+		</condition>
+		<echo message="MOBAC revision: ${mobac.revision.new}" />
+		<antcall target="svnversion_write_property_file" />
+	</target>
+
+	<target name="svnversion_write_property_file" unless="mobac.revision.exported">
+		<propertyfile file="${rev.prop.file}">
+			<entry key="mobac.revision" value="${mobac.revision.new}" />
+		</propertyfile>
+	</target>
+
+	<target name="create_release" description="Packs all necessary files for the binary release into one zip archive">
+		<zip destfile="${zip.name}" update="false">
+			<fileset dir="./">
+				<include name="${jar.name}" />
+				<include name="gpl.txt" />
+				<include name="README.HTM" />
+				<include name="ReleaseNotes.txt" />
+				<include name="CHANGELOG.txt" />
+				<include name="start.*" />
+				<include name="Mobile Atlas Creator.exe" />
+				<include name="mapsources/mp-*.jar" />
+			</fileset>
+			<fileset dir="lib" includes="sqlitejdbc-v056.jar" />
+		</zip>
+	</target>
+
+	<target name="create_release_src" description="Packs all necessary files for the source code release into one zip archive">
+		<zip destfile="${zip_src.name}" update="false">
+			<fileset dir="./">
+				<include name="src/**" />
+				<exclude name="src/mobac/tools/**" />
+				<include name="log4j.xml" />
+				<include name="build.xml" />
+				<include name="gpl.txt" />
+				<include name="README.HTM" />
+				<include name="README-DEV.HTM" />
+				<include name="CHANGELOG.txt" />
+				<include name="start.sh" />
+				<include name=".classpath" />
+				<include name=".project" />
+				<include name="Mobile Atlas Creator.exe" />
+				<include name="misc/launch4j.xml" />
+				<include name="misc/mobac.ico" />
+				<include name="lib/*.jar" />
+			</fileset>
+		</zip>
+	</target>
+</project>

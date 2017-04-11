@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Mobile Atlas Creator - Readme for Developers</title>
+<style type="text/css">
+body {
+	margin-left: 10px;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+h1,h2,h3,h4 {
+	color: #0000CC;
+	font-style: italic;
+}
+
+h1 {
+	border-bottom: solid thin black;
+}
+
+h2 {
+	margin-left: 20px;
+}
+
+h3 {
+	margin-left: 50px;
+}
+
+h4 {
+	margin-left: 80px;
+}
+
+pre {
+	margin-left: 140px;
+}
+
+p,ul,ol {
+	font-size: 110%;
+	margin-left: 100px;
+}
+</style>
+</head>
+<body>
+<h1>Mobile Atlas Creator - Readme for Developers</h1>
+<p>Welcome to the developer documentation of Mobile Atlas Creator
+(MOBAC). First please read the <a href="README.HTM">standard readme</a>
+for all users.</p>
+
+<h2>Table of contents</h2>
+<ul style="margin-left: 50px;">
+	<li><a href="#CodeAccess">Code access</a></li>
+	<li><a href="#EclipseCompile">Compiling MOBAC within Eclipse</a></li>
+	<li><a href="#BuildingMOBAC">Building Mobile Atlas Creator</a></li>
+	<li><a href="#GuidelinesCustomReleases">Guidelines for
+	publishing custom builds/releases</a></li>
+	<li><a href="#MapPacks">Map sources and map packs</a></li>
+	<li><a href="#CustomMapPack">Developing a custom map pack</a>
+	<ul style="margin-left: 10px;">
+		<li><a href="#MapPackBuilding">Building the map pack</a></li>
+	</ul>
+	</li>
+	<li><a href="#ImportantPackages">Source code overview - important packages</a></li>
+	<li><a href="#Participation">Participation</a></li>
+</ul>
+
+<h2><a name="CodeAccess">Code access</a></h2>
+<p>If you want do get your hands on the latest source code of Mobile
+Atlas Creator you can check out the code from the Subversion repository
+at SourceForge:</p>
+<p><a
+	href="https://mobac.svn.sourceforge.net/svnroot/mobac/trunk/MOBAC"><tt>https://mobac.svn.sourceforge.net/svnroot/mobac/trunk/MOBAC</tt></a>
+</p>
+<p>There you will find the latest sources of Mobile Atlas Creator in
+form of an Eclipse (v3.6) project. All tools, libraries, sources and
+build files are included in this repository.</p>
+
+<h2><a name="EclipseCompile">Compiling MOBAC within Eclipse</a></h2>
+<p>If you want to run MOBAC from within Eclipse you only need
+Eclipse with Java Development Tools installed (included in all Eclipse
+Java editions). <br />
+The root class for starting MOBAC in Eclipse <tt>mobac.StartMOBAC</tt></p>
+<p>Compile/building Mobile Atlas Creator without Eclipse requires <a
+	href="http://ant.apache.org/">Apache Ant</a>) which is used for
+building the jar version of Mobile Atlas Creator and of course the Java
+Development Kit (JDK) installed.</p>
+
+<h2><a name="BuildingMOBAC">Building Mobile Atlas Creator</a></h2>
+<p>For building Mobile Atlas Creator please run Apache Ant on the
+provided file <tt><a href="build.xml">build.xml</a></tt></p>
+<p>The default build target performs all necessary tasks for
+compiling the sources, packaging the classes to the main jar and the map
+packs and then minimizing the size of the jar using <a
+	href="http://proguard.sourceforge.net/">ProGuard</a> (<tt>lib/proguard.jar</tt>).<br>
+Additionally the build steps include a call to <tt>lib/svnversion.jar</tt>
+which is a Java only version of the command <a
+	href="http://svnbook.red-bean.com/en/1.1/re57.html">svnversion</a>
+(bases on <a href="http://svnkit.com">SVNKit</a>). This command updates
+the SVN revision information in file <tt>src/main/java/mobac/mobac-rev.properties</tt>
+which is included in the final jar of Mobile Atlas Creator.</p>
+
+<h2><a name="GuidelinesCustomReleases">Guidelines for
+publishing custom builds/releases</a></h2>
+<p>If you modify Mobile Atlas Creator and you want to publish it
+yourself please consider the following guidelines:</p>
+<ol>
+	<li>Chose a version/release name that makes it clear that it is
+	not an official release: Change the version string to reflect that.<br>
+	Example: <tt>1.9 beta 3 XYZ edition</tt><br>
+	The version string is located in the properties file <tt>src/main/java/mobac/mobac.properties</tt>.
+	Change the entry <b>mobac.version</b> to your custom release name.</li>
+	<li>Do not forget that Mobile Atlas Creator is a GPL project -
+	therefore publishing the source code together with the binary release
+	should went without saying.</li>
+	<li>If your modification is useful you may consider to present it
+	to the Mobile Atlas Creator development team. <a
+		href="https://sourceforge.net/tracker/?group_id=238075&atid=1105496">Patches</a>
+	are always welcome. Useful modifications have a great chance to be
+	integrated into the main branch.</li>
+</ol>
+<h2><a name="MapPacks">Map sources and map packs</a></h2>
+<p>Since version v1.9 map sources are no longer part of <tt>Mobile_Atlas_Creator.jar</tt>.
+All map sources implementation are located in jar files in the <tt>mapsources</tt>
+sub-directory. Those map sources implementation packages are called
+"map-packs". Map packs files always starts with the term <tt>mp-</tt>
+and they end with the term <tt>.jar</tt>.</p>
+<p>For implementing new map sources in a development environment
+like Eclipse it is sometimes faster to load the map sources directly
+from class-path rather from the map-packs. You can enable it by setting
+<tt>devmode</tt> in <tt>settings.xml</tt> to <tt>true</tt>. Afterwards
+map sources will be loaded directly from the <tt>bin</tt> directory of
+Eclipse (if available).</p>
+<h2><a name="CustomMapPack">Developing a custom map pack</a></h2>
+<p>For creating your own custom map pack you have to create a new
+Java package below <tt>mobac.mapsources.mappacks</tt>. For example lets
+assume that the name of the new map pack should be <b>mymappack</b>.
+Therefore you have to create the package <tt>mobac.mapsources.mappacks.mymappack</tt>.
+Place all Java source files within this package (sub-packages are also
+possible).</p>
+<p>Additionally you have to create a text file named <tt>mapsources.list</tt>
+inside the package <tt>mobac.mapsources.mappacks.mymappack</tt>. This
+file contains a list of class names (full class name including the
+package name, one per line) that should be loaded by MOBAC as map
+source.</p>
+<p>Background: During the build process this file will be included
+into the map-pack jar as <tt>META-INF/services/mobac.program.interfaces.MapSource</tt>
+so that it can be found by the <a
+	href="http://download.oracle.com/javase/6/docs/api/java/util/ServiceLoader.html">ServiceLoader</a>.
+</p>
+<h3><a name="MapPackBuilding">Building the map pack</a></h3>
+<p>Map packs can be built separately using <a
+	href="http://ant.apache.org/">Apache Ant</a> and the build target <b>build_mapsources</b>:</p>
+<pre>ant build_mapsources</pre>
+<p>Apache Ant is already included in Eclipse, so that you only have
+to select the file <tt>build.xml</tt>, press the right mouse button and
+select <b>Run As</b> - <b>Ant Build...</b>. In the dialogs that opens
+deselect the build target <b>all</b> and select instead <b>build_mapsources</b>.</p>
+<p>Each sub-package of <tt>mobac.mapsources.mappacks</tt> will be
+compiled and packed to an map package. The created map packages are
+saved into the <tt>mapsources</tt> directory. Therefore our example map
+pack will be packed into the file <tt>mapsources/mp-mymappack.jar</tt></p>
+
+
+<h2><a name="ImportantPackages">Source code overview - important packages</a></h2>
+<h3><a href="src/main/java/mobac/gui">mobac.gui</a></h3>
+<p>This package contains the implementation of all dialogs/windows.
+In the sub-packages you can find the related implementations of used
+graphical components - e.g. <tt><a
+	href="src/main/java/mobac/gui/mapview/PreviewMap.java">mobac.gui.mapview.PreviewMap</a></tt>
+- the component that draws the movable map background used by Mobile
+Atlas Creator.</p>
+<h3><a href="src/main/java/mobac/mapsources">mobac.mapsources</a></h3>
+<p>Holds the infrastructure and the implementation of all map
+sources available within Mobile Atlas Creator. For implementing own map
+sources that uses an online map you should derive your map source from
+the abstract base class <a
+	href="src/main/java/mobac/mapsources/AbstractHttpMapSource.java"><tt>mobac.mapsources.AbstractHttpMapSource</tt></a>.
+Map sources should be compiled and packed to a map pack so that they can
+be automatically detected and loaded while MOBAC is starting-up. For
+details on that topic please read section <a href="#CustomMapPack">Developing
+a custom map pack</a>.</p>
+<h3><a href="src/main/java/mobac/program/atlascreators">mobac.program.atlascreators</a></h3>
+<p>Holds the implementations of all atlas creators (atlas output
+formats) provided by Mobile Atlas Creator. Each class in the package
+implements exactly one atlas output format. Of special interest is the
+abstract class <a
+	href="src/main/java/mobac/program/atlascreators/AtlasCreator.java">AtlasCreator</a>
+which is the super class every atlas creator is derived of. The list of
+available formats is maintained in the enumeration <a
+	href="src/main/java/mobac/program/model/AtlasOutputFormat.java"><tt>mobac.program.model.AtlasOutputFormat</tt></a>.
+</p>
+
+<h3><a href="src/main/java/mobac/tools">mobac.tools</a></h3>
+<p>This package contains additional stand-alone tools that are not
+shipped with the Mobile Atlas Creator binary release. For example the <a
+	href="src/main/java/mobac/tools/MapSourcesTester.java"><tt>mobac.tools.MapSourcesTester</tt></a>
+downloads one tile from each map source for verifying that the map
+source is functional.</p>
+
+<h2><a name="Participation">Participation</a></h2>
+<p>If you are familiar with the programming language Java and you
+want to contribute or participate in the development process of Mobile
+Atlas Creator feel free to contact one of the other developers of Mobile
+Atlas Creator <a
+	href="https://sourceforge.net/project/memberlist.php?group_id=238075">listed
+at SourceForge</a>.</p>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<atlas outputFormat="RMaps" name="Germany10-12" version="1">
+    <Layer name="OSM">
+        <Map name="OSM 10" zoom="10" mapSource="Mapnik" minTileCoordinate="133888/82432" maxTileCoordinate="142335/92415">
+            <parameters format="JPEG50" height="256" width="256"/>
+        </Map>
+        <Map name="OSM 11" zoom="11" mapSource="Mapnik" minTileCoordinate="268032/165120" maxTileCoordinate="284671/184831">
+            <parameters format="JPEG50" height="256" width="256"/>
+        </Map>
+        <Map name="OSM 12" zoom="12" mapSource="Mapnik" minTileCoordinate="536320/330240" maxTileCoordinate="569343/369407">
+            <parameters format="JPEG50" height="256" width="256"/>
+        </Map>
+    </Layer>
+</atlas>

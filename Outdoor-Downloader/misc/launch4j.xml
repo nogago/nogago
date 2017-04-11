@@ -1,0 +1,35 @@
+<launch4jConfig>
+  <dontWrapJar>true</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>Mobile_Atlas_Creator.jar</jar>
+  <outfile>..\Mobile Atlas Creator.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <customProcName>false</customProcName>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>
+  <icon>mobac.ico</icon>
+  <jre>
+    <path></path>
+    <minVersion>1.6.0_14</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <maxHeapSize>1024</maxHeapSize>
+  </jre>
+  <versionInfo>
+    <fileVersion>1.0.0.0</fileVersion>
+    <txtFileVersion>-</txtFileVersion>
+    <fileDescription>Mobile Atlas Creator Windows Launcher</fileDescription>
+    <copyright>MOBAC developers</copyright>
+    <productVersion>1.0.0.0</productVersion>
+    <txtProductVersion>-</txtProductVersion>
+    <productName>Mobile Atlas Creator</productName>
+    <companyName></companyName>
+    <internalName>Mobile Atlas Creator 1024MB max Heap</internalName>
+    <originalFilename>Mobile Atlas Creator.exe</originalFilename>
+  </versionInfo>
+</launch4jConfig>

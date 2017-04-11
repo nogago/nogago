@@ -1,0 +1,40 @@
+Mercurial / HG
+- Return to revision with tag 2.0.2 (prior to Google Play Services usage)
+
+Project
+- Add Blackberry nature to project
+- Change to normal Android SDK / Remove Google Maps
+- Add osmdroid-android-3.0.10.jar to the project
+
+AndroidManifest.xml
+- Change  <uses-sdk ="10" />
+  value of element uses-sdk attribute android:targetSdkVersionto 10
+ - Remove uses-library (Uncomment)
+
+
+
+___ Done previously but not repeated ___
+  
+= Build Path Excludes
+- com.google.android.apps.mytracks.util.Api11Adapter
+- com.google.android.apps.mytracks.util.Api14Adapter
+- com.google.android.apps.mytracks.util.Api16Adapter
+  
+  
+  
+ com.google.android.apps.mytracks.AbstractMyTracksActivity
+ - Uncomment in onOptionsItemSelected
+ 
+ com.google.android.apps.mytracks.settings.AbstractSettingsActivity
+ - Modification in onOptionsItemSelected to default behavior
+ 
+ com.google.android.apps.mytracks.util.ApiAdapter.getApiAdapter
+ - Remove Links to Excluded ApiAdapters
+ 
+ com.google.android.apps.mytracks.widgets.TrackWidgetProvider
+ - Uncomment method onAppWidgetOptionsChanged
+
+Res/values-v11/styles.xm and  Res/values-v14/styles.xml
+- Uncomment conflicting style definitions 
+
+Res/styles.xml

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+
+    <!-- Show Preference in ListView  -->
+
+    <ListView
+        android:id="@+id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="0.0dp"
+        android:layout_weight="1" >
+    </ListView>
+
+    <!-- Footer -->
+
+   
+
+   <!--  Start of the actionBar  
+  <View
+    android:background="@color/actionBarSeperator"
+    android:layout_height="1dp"
+    android:layout_width="fill_parent" />
+  <LinearLayout
+   	  android:id="@+id/track_controller_container"
+      android:layout_width="fill_parent"
+      android:orientation="horizontal"
+      android:layout_height="140px"
+      
+      android:paddingTop="29px"
+      android:paddingBottom="30px"
+      android:layout_gravity="left"
+      android:gravity="left"
+      android:background="@color/actionBarBG">
+
+      <ImageButton
+          android:id="@+id/listBtnBarBack"
+          android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+          android:src="@drawable/ic_previous"
+          android:layout_margin="0dp"
+      android:background="@color/actionBarBG"
+      android:layout_gravity="left"
+      android:gravity="left"
+          android:scaleType="centerInside" />
+
+</LinearLayout>
+-->
+</LinearLayout>

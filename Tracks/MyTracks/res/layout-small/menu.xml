@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background" >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" 
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+                  <LinearLayout
+                android:id="@+id/Headliner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <!--
+               	<LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:background="@drawable/status_bar" 
+  			android:orientation="horizontal"  android:id="@+id/Headliner" android:layout_marginLeft="8dp" android:layout_marginRight="8dp">
+
+
+                -->
+
+
+        <ImageView
+            android:id="@+id/HelpButton"
+            android:layout_marginLeft="4dp"
+ 			android:layout_height="52dp" 
+            android:layout_marginTop="0dp"
+            android:layout_weight="0.03"
+            android:clickable="true" android:scaleType="center"
+            android:contentDescription="@string/help"
+            android:focusable="true"  android:layout_width="wrap_content"
+            android:src="@drawable/help_icon" />
+        
+                <TextView
+                    android:id="@+id/AppName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/my_tracks_app_name"
+                    android:textColor="#FFFFFF"
+                    android:textSize="25sp" />
+                
+                
+        <ImageView
+            android:id="@+id/CloseButton"
+ 			android:layout_height="60dp" 
+            android:scaleType="center"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="0.03"
+            android:clickable="true"
+            android:contentDescription="@string/close"
+            android:focusable="true"
+            android:src="@drawable/headliner_close" android:layout_width="wrap_content"  />
+                
+            </LinearLayout>
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp" >
+
+                <LinearLayout
+                    android:id="@+id/MapButton"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@drawable/bg_leftr"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:scaleType="center"
+                        android:src="@drawable/menu_record_track_b" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/rec_track_button"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                        
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_height="fill_parent"
+                    android:layout_weight="2" />
+
+                <LinearLayout
+                    android:id="@+id/SearchButton"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@drawable/bg_rightr"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:scaleType="center"
+                        android:src="@drawable/tracklist" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|top"
+                            android:text="@string/show_tracklist_button"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp" >
+
+                <LinearLayout
+                    android:id="@+id/FavoritesButton"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@drawable/bg_leftr"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:scaleType="center"
+                        android:src="@drawable/tab_stats_b" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|top"
+                            android:gravity="center"
+                            android:text="@string/show_statistics_button"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_height="fill_parent"
+                    android:layout_weight="2" /><LinearLayout
+                    android:id="@+id/SettingsButton"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="3"
+                    android:background="@drawable/bg_rightr"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:scaleType="center"
+                        android:src="@drawable/button_icon_settings" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|top"
+                            android:text="@string/show_settings_button"
+                            android:textColor="#000000"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

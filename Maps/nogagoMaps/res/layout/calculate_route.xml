@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/TextView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/recalculate_route_to_your_location"
+        android:textSize="18dp" >
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ToggleButton
+            android:id="@+id/PedestrianButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/pedestrian_icon"
+            android:contentDescription="@string/app_mode_hiking"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/BicycleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bicycle_icon"
+            android:contentDescription="@string/app_mode_bicycle"
+            android:textOff=""
+            android:textOn="" />
+<!-- MTB-Router
+        <ToggleButton
+            android:id="@+id/CarButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/car_icon"
+            android:contentDescription="@string/app_mode_mtb"
+            android:textOff=""
+            android:textOn="" />
+-->
+    </LinearLayout>
+
+</LinearLayout>

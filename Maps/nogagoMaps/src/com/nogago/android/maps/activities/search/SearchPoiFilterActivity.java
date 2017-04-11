@@ -1,0 +1,192 @@
+/**
+ * 
+ */
+package com.nogago.android.maps.activities.search;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.nogago.android.maps.R;
+import com.nogago.android.maps.access.AccessibleToast;
+import com.nogago.android.maps.activities.EditPOIFilterActivity;
+import com.nogago.android.maps.plus.NameFinderPoiFilter;
+import com.nogago.android.maps.plus.OsmandApplication;
+import com.nogago.android.maps.plus.PoiFilter;
+import com.nogago.android.maps.plus.PoiFiltersHelper;
+import com.nogago.android.maps.plus.ResourceManager;
+import com.nogago.android.maps.plus.SearchByNameFilter;
+
+import net.osmand.osm.LatLon;
+import android.app.ListActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+
+/**
+ * @author Maxim Frolov
+ * 
+ */
+public class SearchPoiFilterActivity extends ListActivity {
+
+	public static final String SEARCH_LAT = SearchActivity.SEARCH_LAT;
+	public static final String SEARCH_LON = SearchActivity.SEARCH_LON;
+	public boolean startEditingPoiActivity = false;
+	
+
+	
+	
+	@Override
+	public void onCreate(Bundle icicle) {
+		super.onCreate(icicle);
+		setContentView(R.layout.searchpoilist);
+		
+		// ListActivity has a ListView, which you can get with:
+		ListView lv = getListView();
+
+		// Then you can create a listener like so:
+		lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> av, View v, int pos, long id) {
+				PoiFilter poi = ((AmenityAdapter) getListAdapter()).getItem(pos);
+				showEditActivity(poi);
+				return true;
+			}
+		});
+	}
+	
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		PoiFiltersHelper poiFilters = ((OsmandApplication)getApplication()).getPoiFilters();
+		List<PoiFilter> filters = new ArrayList<PoiFilter>(); // poiFilters.getUserDefinedPoiFilters()) ;
+		//filters.add(poiFilters.getNameFinderPOIFilter());
+		filters.add(poiFilters.getSearchByNameFilter());
+		filters.addAll(poiFilters.getOsmDefinedPoiFilters());
+		setListAdapter(new AmenityAdapter(filters));
+	}
+	
+	
+	private void updateIntentToLaunch(Intent intentToLaunch){
+		LatLon loc = null;
+		boolean searchAround = false;
+		Intent intent = getIntent();
+		if(intent != null){
+			double lat = intent.getDoubleExtra(SEARCH_LAT, 0);
+			double lon = intent.getDoubleExtra(SEARCH_LON, 0);
+			if(lat != 0 || lon != 0){
+				loc = new LatLon(lat, lon);
+			}
+		}
+		
+		if (loc == null && getParent() instanceof SearchActivity) {
+			loc = ((SearchActivity) getParent()).getSearchPoint();
+			searchAround = ((SearchActivity) getParent()).isSearchAroundCurrentLocation();
+		}
+		if (loc == null && !searchAround) {
+			loc = OsmandApplication.getSettings().getLastKnownMapLocation();
+		}
+		if(loc != null && !searchAround) {
+			intentToLaunch.putExtra(SearchActivity.SEARCH_LAT, loc.getLatitude());
+			intentToLaunch.putExtra(SearchActivity.SEARCH_LON, loc.getLongitude());
+		}
+	}
+
+	private void showEditActivity(PoiFilter poi) {
+		if(!poi.isStandardFilter()) {
+			Intent newIntent = new Intent(SearchPoiFilterActivity.this, EditPOIFilterActivity.class);
+			// folder selected
+			newIntent.putExtra(EditPOIFilterActivity.AMENITY_FILTER, poi.getFilterId());
+			updateIntentToLaunch(newIntent);
+			startActivityForResult(newIntent, 0);
+		} 
+	}
+
+	@Override
+	public void onListItemClick(ListView parent, View v, int position, long id) {
+		final PoiFilter filter = ((AmenityAdapter) getListAdapter())
+				.getItem(position);
+		/*
+		if (position == 1) {
+			Intent newIntent = new Intent(SearchPoiFilterActivity.this, EditPOIFilterActivity.class);
+			newIntent.putExtra(EditPOIFilterActivity.AMENITY_FILTER, filter.getFilterId());
+			updateIntentToLaunch(newIntent);
+			startActivityForResult(newIntent, 0);
+		}
+		*/
+		/*
+		 * if (filter.getFilterId().equals(PoiFilter.CUSTOM_FILTER_ID)) {
+		 * filter.clearFilter(); showEditActivity(filter); return; } if(!(filter
+		 * instanceof SearchByNameFilter)){ ResourceManager rm =
+		 * ((OsmandApplication) getApplication()).getResourceManager();
+		 * if(!rm.containsAmenityRepositoryToSearch(filter instanceof
+		 * NameFinderPoiFilter)){ AccessibleToast.makeText(this,
+		 * R.string.data_to_search_poi_not_available, Toast.LENGTH_LONG);
+		 * return; } }
+		 */
+		
+			final Intent newIntent = new Intent(SearchPoiFilterActivity.this, SearchPOIActivity.class);
+			newIntent.putExtra(SearchPOIActivity.AMENITY_FILTER, filter.getFilterId());
+			updateIntentToLaunch(newIntent);
+			startActivityForResult(newIntent, 0);
+	}
+
+
+
+	class AmenityAdapter extends ArrayAdapter<PoiFilter> {
+		AmenityAdapter(List<PoiFilter> list) {
+			super(SearchPoiFilterActivity.this, R.layout.searchpoi_list, list);
+		}
+
+
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			LayoutInflater inflater = getLayoutInflater();
+			View row = inflater.inflate(R.layout.searchpoifolder_list, parent, false);
+			TextView label = (TextView) row.findViewById(R.id.folder_label);
+			ImageView icon = (ImageView) row.findViewById(R.id.folder_icon);
+			PoiFilter model = getItem(position);
+			label.setText(model.getDisplaySubtype());
+			icon.setImageBitmap(model.getIcon());
+			
+			if(model.getFilterId().equals(SearchByNameFilter.FILTER_ID)) {
+				label.setText(model.getName());
+				icon.setImageResource(R.drawable.tab_icon_favourite_menu);
+				
+				
+			}
+			/*
+			if (position == 1) {
+				startEditingPoiActivity = true;
+				label.setText(getString(R.string.poi_filter_by_category));
+				icon.setImageResource(R.drawable.tab_icon_favourite_menu);
+			}
+			*/
+			/*
+			if(model.getFilterId().equals(PoiFilter.CUSTOM_FILTER_ID)) {
+				icon.setImageResource(android.R.drawable.ic_input_get);
+			} else if (model.getFilterId().equals(PoiFilter.BY_NAME_FILTER_ID)) {
+				//label.setTypeface(Typeface.DEFAULT, Typeface.ITALIC);
+				icon.setImageResource(android.R.drawable.ic_search_category_default);
+			} else {
+//				label.setTypeface(Typeface.DEFAULT);
+				icon.setImageResource(model.isStandardFilter() ? R.drawable.folder : R.drawable.tab_icon_favourite_menu);
+			}
+			*/
+			return (row);
+		}
+
+
+	}
+}

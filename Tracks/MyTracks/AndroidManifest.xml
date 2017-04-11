@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2010 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  android:installLocation="auto"
+  android:versionCode="51"
+  android:versionName="3.0"
+  package="com.nogago.android.tracks" >
+  <supports-screens android:normalScreens="true"
+      android:smallScreens="true"/>
+
+  <!-- Permission to initialize services -->
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+  <!-- Permissions to record locations -->
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <!-- Permissions to access sensors -->
+  <uses-permission android:name="com.dsi.ant.permission.ANT" />
+  <uses-permission android:name="com.dsi.ant.permission.ANT_ADMIN" />
+  <uses-permission android:name="android.permission.BLUETOOTH" />
+<!--   <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />  -->
+  <!-- Permissions to upload tracks -->
+  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+  <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+  <uses-permission android:name="com.google.android.googleapps.permission.GOOGLE_AUTH" />
+  <uses-permission android:name="com.google.android.googleapps.permission.GOOGLE_AUTH.fusiontables" />
+  <uses-permission android:name="com.google.android.googleapps.permission.GOOGLE_AUTH.local" />
+  <uses-permission android:name="com.google.android.googleapps.permission.GOOGLE_AUTH.wise" />
+  <uses-permission android:name="com.google.android.googleapps.permission.GOOGLE_AUTH.writely" />
+  <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+  <!-- Permission to read phone state so voice announcement will not interrupt ongoing calls -->
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <!-- Permission to write to SD card -->
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <!-- Permissions to access My Tracks data -->
+  <uses-permission android:name="com.google.android.apps.mytracks.MYTRACKS_NOTIFICATIONS" />
+  <uses-permission android:name="com.google.android.apps.mytracks.READ_TRACK_DATA" />
+  <uses-permission android:name="com.google.android.apps.mytracks.WRITE_TRACK_DATA" />
+  <!-- Permission to receive My Tracks internal broadcasts -->
+  <permission
+    android:description="@string/permission_notification_label"
+    android:label="@string/permission_notification_label"
+    android:name="com.google.android.apps.mytracks.MYTRACKS_NOTIFICATIONS"
+    android:permissionGroup="android.permission-group.LOCATION"
+    android:protectionLevel="signature" />
+  <!-- Permission to read track data -->
+  <permission
+    android:description="@string/permission_read_description"
+    android:label="@string/permission_read_label"
+    android:name="com.google.android.apps.mytracks.READ_TRACK_DATA"
+    android:permissionGroup="android.permission-group.LOCATION"
+    android:protectionLevel="dangerous" />
+  <!-- Permission to receive track start/end broadcasts -->
+  <permission
+    android:description="@string/permission_notification_description"
+    android:label="@string/permission_notification_label"
+    android:name="com.google.android.apps.mytracks.TRACK_NOTIFICATIONS"
+    android:permissionGroup="android.permission-group.LOCATION"
+    android:protectionLevel="dangerous" />
+  <!-- Permission to write track data, either directly or through service calls -->
+  <permission
+    android:description="@string/permission_write_description"
+    android:label="@string/permission_write_label"
+    android:name="com.google.android.apps.mytracks.WRITE_TRACK_DATA"
+    android:permissionGroup="android.permission-group.LOCATION"
+    android:protectionLevel="dangerous" />
+
+  <uses-sdk
+    android:minSdkVersion="10"
+    android:targetSdkVersion="10" />
+  <!-- Required features -->
+  <uses-feature
+    android:name="android.hardware.location"
+    android:required="true" />
+  <uses-feature
+    android:name="android.hardware.location.gps"
+    android:required="true" />
+  <!-- Optional features -->
+  <uses-feature
+    android:name="android.hardware.bluetooth"
+    android:required="false" />
+  <uses-feature
+    android:name="android.hardware.faketouch"
+    android:required="false" />
+  <uses-feature
+    android:name="android.hardware.location.network"
+    android:required="false" />
+  <uses-feature
+    android:name="android.hardware.sensor.compass"
+    android:required="false" />
+  <uses-feature
+    android:name="android.hardware.telephony"
+    android:required="false" />
+  <uses-feature
+    android:name="android.hardware.telephony.gsm"
+    android:required="false" />
+  <uses-feature
+    android:name="android.hardware.touchscreen"
+    android:required="false" />
+  <uses-feature
+    android:name="android.hardware.touchscreen.multitouch"
+    android:required="false" />
+
+  <supports-screens
+    android:anyDensity="true"
+    android:largeScreens="true"
+    android:normalScreens="true"
+    android:smallScreens="true"
+    android:xlargeScreens="true" />
+
+  <application
+    android:backupAgent="com.nogago.android.tracks.TracksBackupAgent"
+    android:icon="@drawable/my_tracks_icon"
+    android:label="nogago Tracks"
+    android:name="com.nogago.android.tracks.TracksApplication"
+    android:theme="@style/ThemeSelector" >
+
+    <!-- For data backup -->
+    <meta-data
+      android:name="com.google.android.backup.api_key"
+      android:value="AEdPqrEAAAAIH-rZvFVJn4IjD4XSb3ElseX47n5aadM963zHlg" />
+    
+    <!-- Activities -->
+    <activity
+      android:label="@string/menu_aggregated_statistics"
+      android:name=".AggregatedStatsActivity"/>
+    <activity
+      android:label="@string/menu_help"
+      android:name=".HelpActivity" />
+    <activity
+      android:name=".ImportActivity" >
+      <intent-filter>
+        <action android:name="android.intent.action.ATTACH_DATA" />
+        <action android:name="android.intent.action.VIEW" />
+
+        <category android:name="android.intent.category.BROWSABLE" />
+        <category android:name="android.intent.category.DEFAULT" />
+
+        <data android:mimeType="application/gpx" />
+        <data android:mimeType="application/gpx+xml" />
+        <data android:mimeType="application/vnd.google-earth.gpx" />
+        <data android:mimeType="application/vnd.google-earth.gpx+xml" />
+        <data android:scheme="file" />
+      </intent-filter>
+    </activity>
+    <activity
+      android:name=".MarkerEditActivity" />
+    <activity android:name=".MarkerDetailActivity" />
+    <activity android:name=".MarkerListActivity" >
+      <meta-data
+        android:name="android.app.default_searchable"
+        android:value="com.nogago.android.tracks.SearchListActivity" />
+    </activity>
+    <activity
+      android:launchMode="singleTop"
+      android:name=".SearchListActivity" >
+      <intent-filter>
+        <action android:name="android.intent.action.SEARCH" />
+      </intent-filter>
+
+      <meta-data
+        android:name="android.app.searchable"
+        android:resource="@xml/search" />
+    </activity>
+    <activity
+      android:label="@string/menu_sensor_state"
+      android:name=".SensorStateActivity" />
+    
+    <activity android:name=".TrackDetailActivity" />
+    <activity
+      android:name=".TrackEditActivity" />
+    
+    <activity android:name=".TrackListActivity" >
+<!--      
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+ -->
+      <meta-data
+        android:name="android.app.default_searchable"
+        android:value="com.nogago.android.tracks.SearchListActivity" />
+    </activity>   
+    
+    
+    <activity android:name=".MainMenuActivity">
+    	<intent-filter>
+    	    <action android:name="android.intent.action.MAIN" />
+    	    <category android:name="android.intent.category.LAUNCHER" />
+    	</intent-filter>
+    	
+    	<meta-data 
+    	    android:name="android.app.default_searchable"
+    	    android:value="com.nogago.android.tracks.SearchListActivity" />
+    </activity>
+    
+    
+    <activity android:name=".BackupActivity" />
+    <activity android:name=".RestoreActivity" />
+    <activity android:name=".RestoreChooserActivity" />
+    <activity android:name=".SendDocsActivity" />
+    <activity android:name=".SaveActivity" />
+    <activity android:name=".SendFusionTablesActivity" />
+    <activity
+      android:label="@string/maps_list_title"
+      android:name=".ChooseMapActivity" />
+    <activity android:name=".SendMapsActivity" />
+    <activity android:name=".AccountChooserActivity" />
+    <activity android:name=".ConfirmSharingActivity" />
+    <activity android:name=".BackupSettingsActivity" />
+    <activity android:name=".ChartSettingsActivity" />
+    <activity android:name=".MapSettingsActivity" />
+	<activity android:name=".SettingsActivity" />
+    <activity android:name=".RecordingSettingsActivity" />
+    <activity android:name=".SensorSettingsActivity" />
+    <activity android:name=".StatsSettingsActivity" />
+    <activity android:name=".SharingSettingsActivity" />
+    
+    <!-- Services -->
+    <service
+      android:exported="false"
+      android:name="com.nogago.android.tracks.services.ControlRecordingService" /> 
+    <service android:name="com.nogago.android.tracks.services.RemoveTempFilesService" />
+    <service
+      android:enabled="true"
+      android:exported="true"
+      android:icon="@drawable/arrow_320"
+      android:label="@string/my_tracks_recording_service"
+      android:name="com.nogago.android.tracks.services.TrackRecordingService" />
+    <!-- Receivers -->
+    <receiver android:name="com.nogago.android.tracks.BootReceiver" >
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+      </intent-filter>
+     </receiver>
+     <receiver android:name="com.nogago.android.tracks.widgets.TrackWidgetProvider" >
+       <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+        <action android:name="com.google.android.apps.mytracks.TRACK_STARTED" />
+        <action android:name="com.google.android.apps.mytracks.TRACK_STOPPED" />
+       </intent-filter>
+
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/track_widget_info" />
+    </receiver>
+    <!-- Providers -->
+    <!-- My Tracks data provider -->
+    <provider
+      android:authorities="com.nogago.android.tracks"
+      android:exported="true"
+      android:name="com.nogago.android.tracks.content.MyTracksProvider"
+      android:readPermission="com.google.android.apps.mytracks.READ_TRACK_DATA"
+      android:writePermission="com.google.android.apps.mytracks.WRITE_TRACK_DATA" />
+    <!-- Search suggestion provider -->
+    <provider
+      android:authorities="com.nogago.android.tracks"
+      android:exported="false"
+      android:name="com.nogago.android.tracks.content.SearchEngineProvider" />
+
+   <!--  <uses-library android:name="com.google.android.maps" />  -->
+  </application>
+
+</manifest>
