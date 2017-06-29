@@ -99,7 +99,7 @@ limitations under the License.
           android:layout_width="0dp"
           android:layout_weight="1"
         android:layout_height="wrap_content"
-          android:src="@drawable/ic_stop_0"
+          android:src="@android:drawable/ic_menu_add"
           android:contentDescription="@string/icon_stop_recording"
           
       android:background="@color/actionBarBG"

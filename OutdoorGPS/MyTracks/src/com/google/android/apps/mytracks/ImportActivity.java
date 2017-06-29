@@ -20,7 +20,6 @@ import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.mytracks.util.DialogUtils;
 import com.google.android.apps.mytracks.util.FileUtils;
 import com.google.android.apps.mytracks.util.IntentUtils;
-import com.google.android.apps.mytracks.util.UriUtils;
 import com.nogago.bb10.tracks.R;
 
 import android.app.Activity;
@@ -29,8 +28,10 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.widget.Toast;
@@ -38,7 +39,7 @@ import android.widget.Toast;
 /**
  * An activity to import GPX files from the SD card. Optionally to import one
  * GPX file and display it in My Tracks.
- *
+ * 
  * @author Rodrigo Damazio
  */
 public class ImportActivity extends Activity {
@@ -52,20 +53,57 @@ public class ImportActivity extends Activity {
 
   private ImportAsyncTask importAsyncTask;
   private ProgressDialog progressDialog;
-  
+
   private boolean importAll;
-  
+
   // path on the SD card to import
   private String path;
+  private Uri data;
 
   // number of succesfully imported files
   private int successCount;
-  
+
   // number of files to import
   private int totalCount;
-  
+
   // last successfully imported track id
   private long trackId;
+
+  private String getNameFromContentUri(Uri contentUri) {
+
+    final String name;
+
+    final Cursor returnCursor = this.getContentResolver().query(contentUri, null, null, null, null);
+
+    if (returnCursor != null && returnCursor.moveToFirst()) {
+
+      int columnIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+
+      if (columnIndex != -1) {
+
+        name = returnCursor.getString(columnIndex);
+
+      } else {
+
+        name = contentUri.getLastPathSegment();
+
+      }
+
+    } else {
+
+      name = null;
+
+    }
+
+    if (returnCursor != null && !returnCursor.isClosed()) {
+
+      returnCursor.close();
+
+    }
+
+    return name;
+
+  }
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -83,13 +121,13 @@ public class ImportActivity extends Activity {
         return;
       }
 
-      Uri data = intent.getData();
-      if (!UriUtils.isFileUri(data)) {
-        Log.d(TAG, "Invalid data: " + intent);
-        finish();
-        return;
-      }
-      path = data.getPath();
+      data = intent.getData();
+      /*
+       * DDDD if (!UriUtils.isFileUri(data)) { // TODO Process URL Content (e.g.
+       * for graphhopper.com) Log.d(TAG, "Invalid data: " + intent); finish();
+       * return; }
+       */
+      path = getNameFromContentUri(data);
     }
 
     Object retained = getLastNonConfigurationInstance();
@@ -97,7 +135,7 @@ public class ImportActivity extends Activity {
       importAsyncTask = (ImportAsyncTask) retained;
       importAsyncTask.setActivity(this);
     } else {
-      importAsyncTask = new ImportAsyncTask(this, importAll, path);
+      importAsyncTask = new ImportAsyncTask(this, importAll, path, data);
       importAsyncTask.execute();
     }
   }
@@ -112,8 +150,8 @@ public class ImportActivity extends Activity {
   protected Dialog onCreateDialog(int id) {
     switch (id) {
       case DIALOG_PROGRESS_ID:
-        progressDialog = DialogUtils.createHorizontalProgressDialog(
-            this, R.string.sd_card_import_progress_message, new DialogInterface.OnCancelListener() {
+        progressDialog = DialogUtils.createHorizontalProgressDialog(this,
+            R.string.sd_card_import_progress_message, new DialogInterface.OnCancelListener() {
               @Override
               public void onCancel(DialogInterface dialog) {
                 importAsyncTask.cancel(true);
@@ -126,35 +164,30 @@ public class ImportActivity extends Activity {
         if (successCount == 0) {
           message = getString(R.string.sd_card_import_error_no_file, path);
         } else {
-          String totalFiles = getResources()
-              .getQuantityString(R.plurals.importGpxFiles, totalCount, totalCount);
-          message = getString(
-              R.string.sd_card_import_success_count, successCount, totalFiles, path);
+          String totalFiles = getResources().getQuantityString(R.plurals.importGpxFiles,
+              totalCount, totalCount);
+          message = getString(R.string.sd_card_import_success_count, successCount, totalFiles, path == null ? "Web" : path);
         }
-        return new AlertDialog.Builder(this)
-            .setCancelable(true)
-            .setMessage(message)
+        return new AlertDialog.Builder(this).setCancelable(true).setMessage(message)
             .setOnCancelListener(new DialogInterface.OnCancelListener() {
               @Override
               public void onCancel(DialogInterface dialog) {
                 finish();
               }
-            })
-            .setPositiveButton(R.string.generic_ok, new DialogInterface.OnClickListener() {
+            }).setPositiveButton(R.string.generic_ok, new DialogInterface.OnClickListener() {
               @Override
               public void onClick(DialogInterface dialog, int which) {
                 if (!importAll && trackId != -1L) {
-                  Intent intent = IntentUtils
-                      .newIntent(ImportActivity.this, TrackDetailActivity.class)
-                      .putExtra(TrackDetailActivity.EXTRA_TRACK_ID, trackId);
+                  Intent intent = IntentUtils.newIntent(ImportActivity.this,
+                      TrackDetailActivity.class).putExtra(TrackDetailActivity.EXTRA_TRACK_ID,
+                      trackId);
                   TaskStackBuilder taskStackBuilder = TaskStackBuilder.from(ImportActivity.this);
                   taskStackBuilder.addNextIntent(intent);
                   taskStackBuilder.startActivities();
                 }
                 finish();
               }
-            })
-            .create();
+            }).create();
       default:
         return null;
     }
@@ -162,7 +195,7 @@ public class ImportActivity extends Activity {
 
   /**
    * Invokes when the associated AsyncTask completes.
-   *
+   * 
    * @param success true if the AsyncTask is successful
    * @param imported the number of files successfully imported
    * @param total the total number of files to import
@@ -173,7 +206,7 @@ public class ImportActivity extends Activity {
     totalCount = total;
     trackId = id;
     removeDialog(DIALOG_PROGRESS_ID);
-    if (success) {
+    if (success && trackId > 0) {
       showDialog(DIALOG_RESULT_ID);
     } else {
       Toast.makeText(this, R.string.sd_card_import_error, Toast.LENGTH_LONG).show();
@@ -190,7 +223,7 @@ public class ImportActivity extends Activity {
 
   /**
    * Sets the progress dialog value.
-   *
+   * 
    * @param number the number of files imported
    * @param max the maximum number of files
    */
@@ -201,17 +234,16 @@ public class ImportActivity extends Activity {
       progressDialog.setProgress(Math.min(number, max));
     }
   }
-  
 
   @Override
   public void onStart() {
     super.onStart();
-    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+    EasyTracker.getInstance(this).activityStart(this); // Add this method.
   }
 
   @Override
   public void onStop() {
     super.onStop();
-    EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+    EasyTracker.getInstance(this).activityStop(this); // Add this method.
   }
 }

@@ -58,6 +58,8 @@ public class GpxImporter extends DefaultHandler {
   private static final String TAG_NAME = "name";
   private static final String TAG_TIME = "time";
   private static final String TAG_TRACK = "trk";
+  private static final String TAG_RTE = "rte";
+  private static final String TAG_RTE_POINT = "rtept";
   private static final String TAG_TRACK_POINT = "trkpt";
   private static final Object TAG_TRACK_SEGMENT = "trkseg";
 
@@ -180,14 +182,14 @@ public class GpxImporter extends DefaultHandler {
       throws SAXException {
     if (isInTrackElement) {
       trackChildDepth++;
-      if (localName.equals(TAG_TRACK)) {
+      if (localName.equals(TAG_TRACK) || localName.equals(TAG_RTE)) {
         throw new SAXException(createErrorMessage("Invalid GPX. Already inside a track."));
       } else if (localName.equals(TAG_TRACK_SEGMENT)) {
         onTrackSegmentElementStart();
-      } else if (localName.equals(TAG_TRACK_POINT)) {
+      } else if (localName.equals(TAG_TRACK_POINT) || localName.equals(TAG_RTE_POINT) ) {
         onTrackPointElementStart(attributes);
       } 
-    } else if (localName.equals(TAG_TRACK)) {
+    } else if (localName.equals(TAG_TRACK) || localName.equals(TAG_RTE)) {
       isInTrackElement = true;
       trackChildDepth = 0;
       onTrackElementStart();
@@ -201,7 +203,7 @@ public class GpxImporter extends DefaultHandler {
       return;
     }
 
-    if (localName.equals(TAG_TRACK)) {
+    if (localName.equals(TAG_TRACK)  || localName.equals(TAG_RTE)) {
       onTrackElementEnd();
       isInTrackElement = false;
       trackChildDepth = 0;
@@ -217,7 +219,7 @@ public class GpxImporter extends DefaultHandler {
       }
     } else if (localName.equals(TAG_TRACK_SEGMENT)) {
       onTrackSegmentElementEnd();
-    } else if (localName.equals(TAG_TRACK_POINT)) {
+    } else if (localName.equals(TAG_TRACK_POINT) || localName.equals(TAG_RTE_POINT)) {
       onTrackPointElementEnd();
     } else if (localName.equals(TAG_ALTITUDE)) {
       onAltitudeElementEnd();

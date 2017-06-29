@@ -119,7 +119,7 @@ limitations under the License.
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/icon_stop_recording"
                 android:paddingLeft="10dp"
-                android:src="@drawable/ic_stop_0" />
+                android:src="@android:drawable/ic_menu_add" />
         </LinearLayout>
     </LinearLayout>
 

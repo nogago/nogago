@@ -363,8 +363,7 @@ public class TrackDetailActivity extends AbstractMyTracksActivity implements Del
     playNogagoMenuItem = menu.findItem(R.id.track_detail_play);
     playEarthMenuItem = menu.findItem(R.id.track_detail_earth_play); // Not
                                                                      // Supported
-    if (Constants.IS_BLACKBERRY)
-      menu.removeItem(R.id.track_detail_earth_play); // on
+    if (Constants.IS_BLACKBERRY) playEarthMenuItem.setVisible(false);
     shareMenuItem = menu.findItem(R.id.track_detail_share);
     saveMenuItem = menu.findItem(R.id.track_detail_mail);
     voiceFrequencyMenuItem = menu.findItem(R.id.track_detail_voice_frequency);

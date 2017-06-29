@@ -61,6 +61,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -238,10 +239,16 @@ public class TrackListActivity extends FragmentActivity implements DeleteOneTrac
   private final OnClickListener stopListener = new OnClickListener() {
     @Override
     public void onClick(View v) {
-      AnalyticsUtils.sendPageViews(TrackListActivity.this, "/action/stop_recording");
-      updateMenuItems(false);
-      TrackRecordingServiceConnectionUtils.stopRecording(TrackListActivity.this,
-          trackRecordingServiceConnection, true);
+
+      if (recordingTrackId == PreferencesUtils.RECORDING_TRACK_ID_DEFAULT) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://m.gpsies.com"));
+        startActivity(browserIntent);      
+        } else {
+        AnalyticsUtils.sendPageViews(TrackListActivity.this, "/action/stop_recording");
+        updateMenuItems(false);
+        TrackRecordingServiceConnectionUtils.stopRecording(TrackListActivity.this,
+            trackRecordingServiceConnection, true);
+      }
     }
   };
 
@@ -563,21 +570,7 @@ public class TrackListActivity extends FragmentActivity implements DeleteOneTrac
         updateMenuItems(recordingTrackId != PreferencesUtils.RECORDING_TRACK_ID_DEFAULT);
         return true;
       case R.id.track_list_import:
-        AnalyticsUtils.sendPageViews(this, "/action/import");
-        String msg = String.format(getResources().getString(R.string.dlg_import), Constants.IS_BLACKBERRY ? FileUtils
-            .buildExternalDirectoryPath("gpx").toString().replace("/mnt/sdcard", "/misc/android") :  FileUtils
-            .buildExternalDirectoryPath("gpx").toString()  );
-        Builder builder = new AlertDialog.Builder(TrackListActivity.this);
-        builder.setMessage(msg).setNeutralButton(getString(android.R.string.cancel), null);
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-          @Override
-          public void onClick(DialogInterface dialog, int which) {
-            Intent myintent = IntentUtils.newIntent(TrackListActivity.this, ImportActivity.class)
-                .putExtra(ImportActivity.EXTRA_IMPORT_ALL, true);
-            startActivity(myintent);
-          }
-        });
-        builder.show();
+        importTrackAction();
         return true;
       case R.id.track_list_save_all_gpx:
         startSaveActivity(TrackFileFormat.GPX);
@@ -610,6 +603,26 @@ public class TrackListActivity extends FragmentActivity implements DeleteOneTrac
       default:
         return super.onOptionsItemSelected(item);
     }
+  }
+
+  private void importTrackAction() {
+    AnalyticsUtils.sendPageViews(this, "/action/import");
+    String msg = String.format(
+        getResources().getString(R.string.dlg_import),
+        Constants.IS_BLACKBERRY ? FileUtils.buildExternalDirectoryPath("gpx").toString()
+            .replace("/mnt/sdcard", "/misc/android") : FileUtils.buildExternalDirectoryPath("gpx")
+            .toString());
+    Builder builder = new AlertDialog.Builder(TrackListActivity.this);
+    builder.setMessage(msg).setNeutralButton(getString(android.R.string.cancel), null);
+    builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+        Intent myintent = IntentUtils.newIntent(TrackListActivity.this, ImportActivity.class)
+            .putExtra(ImportActivity.EXTRA_IMPORT_ALL, true);
+        startActivity(myintent);
+      }
+    });
+    builder.show();
   }
 
   @Override
@@ -720,7 +733,8 @@ public class TrackListActivity extends FragmentActivity implements DeleteOneTrac
         new CheckUnitsDialogFragment().show(getSupportFragmentManager(),
             CheckUnitsDialogFragment.CHECK_UNITS_DIALOG_TAG);
       }
-    } else if (!Constants.IS_BLACKBERRY && EulaUtils.getShowReview(this) && EulaUtils.getAppStart(this) > 7) {
+    } else if (!Constants.IS_BLACKBERRY && EulaUtils.getShowReview(this)
+        && EulaUtils.getAppStart(this) > 7) {
       // Ask For Review at 7th start, continue bugging the user
       Fragment fragment = getSupportFragmentManager().findFragmentByTag(
           ReviewDialogFragment.REVIEW_DIALOG_TAG);

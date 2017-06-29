@@ -1,0 +1,143 @@
+   <!-- TO DO Additions in need for translation -->
+
+    <string name="icon_marker" translation_description="The accessibility description for the pause recording icon.">    Mark location</string>
+    <string name="icon_upload" translation_description="The accessibility description for the record track icon.">    Upload track to nogago®.com</string>
+    <string name="nogago_label">Your nogago®.com credentials</string>
+    <string name="nogago_register">Register with nogago®.com to upload and share your trakcs</string>
+    <string name="nogago_register_title">Register with nogago®.com</string>
+    <string name="username_label">Username</string>
+    <string name="password_label">Password</string>
+    <string name="other_settings">App settings</string>
+    <string name="button_yes">Yes</string>
+    <string name="button_no">No</string>
+    <string name="maps_not_installed">nogago® Maps is not installed on your Phone, do your want to install it?</string>
+    <string name="wanna_start_maps">Start nogago® Maps?</string>
+    <string name="ok_button">OK</string>
+    <string name="wrong_credential">Credentials error</string>
+    <string name="error_username">You need to set up your nogago®.com credentials first before downloading a map.</string>
+    <string name="task_cancelled">Task cancelled on your request.</string>
+    <string name="error_track_does_not_exist">Track does not exist!</string>
+    <string name="error_operation_cancelled">Operation cancelled</string>
+    <string name="upload_progressbar_title">Uploading Track...</string>
+    <string name="successfully_uploaded_track">Your track was successfully uploaded to nogago®!</string>
+    <!-- new for Menu -->
+    <string name="help">Help</string>
+    <string name="close">Close</string>
+    <string name="rec_track_button">Record a track</string>
+    <string name="show_tracklist_button">Track list</string>
+    <string name="show_statistics_button">Aggregated statistics</string>
+    <string name="show_settings_button">Settings</string>
+    <string name="error_network">Apologies, you cannot access the Internet.</string>
+    <string name="menu_mail" translation_description="In the menu, to save a track to the SD card. This menu item has a
+      submenu.
+
+      Character limit: ~20 (1 line)">    Email track</string>
+    <string name="previous_run_crashed">Sorry, our app crashed at last use. \n\n Please help us improve this app by sending in your report.</string>
+    <string name="send_report">Send</string>
+    <string name="donot_send_report">Skip</string>
+    <string name="map_copyright">    © 2013 MapQuest - Map data © OpenStreetMap - Licensed under ODbL</string>
+    <string name="nogago_list_empty_message_q" translation_description="When the track list is empty, the message informing the user to click
+      on the record button to start a new recording">    Click on the red record button to start recording your next adventure. Or enter \"N\" for recording a new track, \"P\" for pausing the recording, \"S\" to stop recording.</string>
+    <string name="nogago_list_empty_message_z" translation_description="When the track list is empty, the message informing the user to click
+      on the record button to start a new recording">    Click on the red record button to start recording your next adventure. </string>
+    
+    <!-- Help page -->
+    <string name="n_help_data_connection_answer" translation_description="In the &apos;Help&apos; page, the answer on data connection.">    
+        Cell signal or data connection is not required to record GPS tracks. However, if there is no
+    data connection, you will only see a Map using the nogago® Map app. In nogago® Tracks, you will see a grey screen or a
+    partial map. You can setup in the preferences, that nogago® Maps is always for map display instead of the built-in online map.
+    Tracks, represented as simple lines, can still be viewed even if there is no data connection or nogago® Maps is not installed.</string>
+
+    <string name="n_help_delete_tracks_answer" translation_description="In the &apos;Help&apos; page, the answer on delete tracks.">    
+    From the track list, select &#8220;Delete all&#8221; when not recording. This permanently
+    deletes the recorded tracks from memory. If you have saved tracks or backups on the SD card, you
+    must delete them separately. You can access the SD card using the built in file manager app. All tracks are stored on the memory card
+    below the folder documents / Tracks and can be accessed via your PC.</string>
+    <string name="n_help_my_tracks_answer" translation_description="In the &apos;Help&apos; page, the answer on what is nogago® Tracks.">   
+    nogago® Tracks allows you to record outdoor activities using GPS signals. You can visualize your walking, running, biking or any
+    other outdoor activity while watching live performance statistics. nogago® Tracks makes it easy to archive
+    your training history with nogago®.com, and share your
+    activities with friends and the world.</string>
+   <string name="n_help_send_track_answer" translation_description="In the &apos;Help&apos; page, the answer on sending a track.
+
+      %1$s url. E.g., &apos;maps.google.com&apos;.
+      %2$s url. E.g., &apos;google.com/fusiontables&apos;.
+      %3$s url. E.g., &apos;docs.google.com&apos;.">    
+      You can send a track to your friends via email or archive your activity by uploading them to nogago®.com.
+      </string>
+   
+         
+       <string name="n_help_split_track_answer" translation_description="In the &apos;Help&apos; page, the answer on splitting long tracks.">   
+            Tracks with several segments are split at import. Every segment is created as a separate track in the track list to enable accessing the segments.</string>
+            
+    <string name="n_help_split_track_question" translation_description="In the &apos;Help&apos; page, the question on splitting long tracks.">   
+         Why are tracks split into multiple segments at import?</string>
+             
+       <string name="help_import_answer" translation_description="In the &apos;Help&apos; page, the answer on splitting long tracks.">   
+            You can import tracks in the format GPX. Place the tracks into the folder documents / Tracks / gpx on your memory card. 
+            Navigate to the track list. Press the button with three dots. Choose \"Import from SD card\". 
+            When the operation is finished you will find the tracks in the track list. Android users can directly import GPX tracks by clicking on GPX files in the file browser. Opening GPX files from email attachments is also supported on Android.
+            Please contact BlackBerry and ask support this feature, too !
+            </string>
+            
+    <string name="help_import_question" translation_description="In the &apos;Help&apos; page, the question on splitting long tracks.">   
+        How can I open GPX tracks that I have downloaded from nogago®.com, received from your friends, or downloaded on the Web ?</string>
+         
+           <string name="help_export_answer" translation_description="In the &apos;Help&apos; page, the answer on splitting long tracks.">   
+            Navigate to the track list. Press the button with three dots. Choose \"Export to SD card\". You can choose the common formats
+            GPX, KML (for viewing on Google Maps and Google Earth), and CSV. Alternatively you can mail a single track in those formats
+            to a friend or upload the track for viewing online at nogago®.com.
+            
+            </string>
+            
+    <string name="help_export_question" translation_description="In the &apos;Help&apos; page, the question on splitting long tracks.">   
+         Can I export my tracks and copy them on my PC or move them to my other phone?</string>
+         
+           <string name="help_backup_answer" translation_description="In the &apos;Help&apos; page, the answer on splitting long tracks.">   
+            Use the Backup functionality available from the settings. Your backup is compatible between Android and BlackBerry versions of this app.</string>
+            
+    <string name="help_backup_question" translation_description="In the &apos;Help&apos; page, the question on splitting long tracks.">   
+         How do I backup my settings and all recorded tracks?</string>
+         
+         
+           <string name="help_restore_answer" translation_description="In the &apos;Help&apos; page, the answer on splitting long tracks.">   
+            Use the Restore functionality available from the settings. You can choose to restore a specific backup, if you have several backups. To restore
+            your backup from another phone simply place the ZIP file into the documents/Tracks/restore folder on your memory card. Backup and restore from Android and BlackBerry10 phones are compatible.
+            Use the import function to restore your GPX tracks from nogago® Outdoor GPS app for BlackBerry OS 4.5-7.1 </string>
+            
+    <string name="help_restore_question" translation_description="In the &apos;Help&apos; page, the question on splitting long tracks.">   
+         How do I restore my settings and all recorded tracks?</string>
+        
+     <string name="n_about_copyright_notice" translation_description="In the &apos;About nogago® Tracks&apos; page, the copyright notice.">    
+        © 2009-2013 nogago® based on work by Google Inc. and the My Tracks community. This app is open source and licensed under Apache license V2.0.  
+        Contact sales@nogago.com if you want our support to create similar apps based on nogago Tracks or Maps.</string>
+      
+           <string name="help_open_answer" translation_description="In the &apos;Help&apos; page, the answer on splitting long tracks.">   
+           This app is Open Source and licensed under the Apache license Version 2.0. This allows others to build on our work and our
+           esteemed users to investigate what is happening with their data in times where privacy is at risk. Additionally, we
+           were able to create this because others opened their contributions and would be happy to have contributions by interested developers.
+           </string>
+            
+    <string name="help_open_question" translation_description="In the &apos;Help&apos; page, the question on splitting long tracks.">   
+         Why is this app open source ?</string>
+         
+    <string name="settings_map_choice_label">
+        Map provider
+    </string>
+    
+    <string name="settings_map_choice_online">
+        Internal online map
+    </string>
+    
+    
+    <string name="settings_map_choice_online">
+        External topographic offline map
+    </string>
+      
+    <string name="settings_map_choice_description">
+        Choose the map provider between the internal online map viewer powered by MapSource or use nogago Maps as
+        a separate application that allows to view maps offline with topographic contours and provides search and
+        navigation functionality.
+    </string>
+    
+     

@@ -142,8 +142,8 @@ public class TrackController {
      * recordImageButton.setScaleType(ScaleType.CENTER);
      */
     if(stopImageButton != null) {
-    stopImageButton.setImageResource(isRecording ? R.drawable.ic_stop_1 : R.drawable.ic_stop_0);
-    stopImageButton.setEnabled(isRecording);
+    stopImageButton.setImageResource(isRecording ? R.drawable.ic_stop_1 : R.drawable.gpsies);
+    // stopImageButton.setEnabled(isRecording);
     }
     /*
      * lp = stopImageButton.getLayoutParams(); lp.width=144; lp.height=81;
