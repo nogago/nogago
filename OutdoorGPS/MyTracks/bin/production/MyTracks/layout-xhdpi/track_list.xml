@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2010 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="fill_parent"
+  android:layout_width="fill_parent"
+  android:orientation="vertical" >
+  
+  <View
+    android:background="@color/actionBarSeperator"
+    android:layout_height="1dp"
+    android:layout_width="fill_parent" />
+  <LinearLayout
+      android:id="@+id/track_controller_container"
+      android:layout_width="fill_parent"
+      android:layout_height="50dp"
+      android:background="@color/actionBarBG"
+      android:orientation="horizontal"
+      android:paddingBottom="4dp"
+      android:paddingTop="4dp" >
+      
+
+      <ImageButton
+          android:id="@+id/listBtnBarHelp"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+        android:layout_height="wrap_content"
+          android:src="@drawable/ic_help"
+          android:layout_margin="0dp"
+      android:background="@color/actionBarBG"
+          android:scaleType="centerInside" />
+
+      <ImageButton
+          android:id="@+id/listBtnBarRecord"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+        android:layout_height="wrap_content"
+          android:layout_toRightOf="@id/listBtnBarHelp"
+          android:src="@drawable/ic_record"
+          android:contentDescription="@string/icon_record_track"
+          
+      android:background="@color/actionBarBG"
+          android:scaleType="centerInside" />
+
+      <ImageButton
+          android:id="@+id/listBtnBarStop"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+        android:layout_height="wrap_content"
+          android:layout_toRightOf="@id/listBtnBarRecord"
+          android:src="@drawable/gpsies"
+          android:contentDescription="@string/icon_stop_recording"
+          
+      android:background="@color/actionBarBG"
+          android:scaleType="centerInside"  />
+      
+      <ImageButton
+          android:id="@+id/listBtnBarSearch"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+        android:layout_height="wrap_content"
+          android:layout_toRightOf="@id/listBtnBarStop"
+          android:src="@drawable/ic_search"
+          
+      android:background="@color/actionBarBG"
+          android:scaleType="centerInside"  />
+
+      <ImageButton
+          android:id="@+id/listBtnBarSettings"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+        android:layout_height="wrap_content"
+          android:layout_toRightOf="@id/listBtnBarSearch"
+          android:src="@drawable/ic_settings"
+         
+      android:background="@color/actionBarBG"
+          android:scaleType="centerInside" />
+
+</LinearLayout>
+
+  <View
+    android:background="@color/actionBarSeperator"
+    android:layout_height="1dp"
+    android:layout_width="fill_parent" />
+  <ListView
+    android:id="@+id/track_list"
+    android:layout_height="0dp"
+    android:layout_weight="1.0"
+    android:layout_width="fill_parent" />
+  <TextView
+    android:id="@+id/track_list_empty_view"
+    android:layout_height="0dp"
+    android:layout_weight="1.0"
+    android:layout_width="fill_parent"
+    android:text="@string/nogago_list_empty_message_z"
+    android:visibility="gone"
+    style="@style/ListEmptyTextView" >
+  </TextView>
+
+ 
+</LinearLayout>
